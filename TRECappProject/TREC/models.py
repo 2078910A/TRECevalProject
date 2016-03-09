@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 #A helper function which returns the UNIX path where the user's
 #profile pic is to be stored in the media directory
 def user_profilepic_directory_path(instance, filename):
@@ -17,25 +18,27 @@ class UserProfile(models.Model):
     display_name = models.CharField(max_length=50)
     organisation = models.CharField(max_length=50)
 
+
 class Track(models.Model):
 
     title = models.CharField(max_length=64, unique=True)
     track_url = models.URLField(blank=True)
     description = models.CharField(max_length=256)
 
-    NEWS = 'N'
-    WEB = 'W'
-    BLOG = 'B'
-    MEDICAL = 'M'
-    LEGAL = 'L'
+    #NEWS = 'N'
+    #WEB = 'W'
+    #BLOG = 'B'
+    #MEDICAL = 'M'
+    #LEGAL = 'L'
 
-    GENRE_CHOICES = (
-        (NEWS, 'News'),
-        (WEB, 'Web'),
+    #GENRE_CHOICES = (
+        #(NEWS, 'News'),
+        #(WEB, 'Web'),
 
-        )
+        #)
 
-    genre = models.CharField(max_length=2, choice=GENRE_CHOICES, blank=False)
+    genre = models.CharField(max_length=2, blank=False)
+
 
 class Task(models.Model):
 
