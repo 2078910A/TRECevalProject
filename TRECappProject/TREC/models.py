@@ -1,5 +1,5 @@
 from django.db import models
-form django.contrib.auth.models import User
+from django.contrib.auth.models import User
 
 #A helper function which returns the UNIX path where the user's
 #profile pic is to be stored in the media directory
