@@ -1,4 +1,5 @@
 from django.db import models
+form django.contrib.auth.models import User
 
 #A helper function which returns the UNIX path where the user's
 #profile pic is to be stored in the media directory
@@ -22,12 +23,16 @@ class Track(models.Model):
     track_url = models.URLField(blank=True)
     description = models.CharField(max_length=256)
 
-    AD_HOC = 'AD'
+    NEWS = 'N'
     WEB = 'W'
+    BLOG = 'B'
+    MEDICAL = 'M'
+    LEGAL = 'L'
 
     GENRE_CHOICES = (
-        (AD_HOC, 'Ad hoc'),
-        (WEB, 'Web')
+        (NEWS, 'News'),
+        (WEB, 'Web'),
+
         )
 
     genre = models.CharField(max_length=2, choice=GENRE_CHOICES, blank=False)
@@ -39,4 +44,6 @@ class Task(models.Model):
     task_url = models.URLField(blank=True)
     description = models.CharField(max_length=256)
     year = models.IntegerField()
+
+    #Will store judgement (.qrel) files in 'media/judgements/'
     judgement_file = models.FileField(upload_to='judgements/')
