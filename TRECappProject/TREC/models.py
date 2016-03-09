@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 #A helper function which returns the UNIX path where the user's
 #profile pic is to be stored in the media directory.
-#!NOT CURRENTLY USED! (BA 09/03/2016)
 def user_profilepic_directory_path(instance, filename):
     #stores uploaded profile pics to 'media/profile_pics/user_<id>/filename'
     return '/profile_pics/user_{0}/{1}'.format(instance.user.id, filename)
@@ -21,7 +20,7 @@ class UserProfile(models.Model):
 
 class Track(models.Model):
 
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, unique=True)
     track_url = models.URLField(blank=True)
     description = models.CharField(max_length=100)
 
@@ -35,10 +34,12 @@ class Track(models.Model):
 
     genre = models.CharField(max_length=20, choices=GENRE_CHOICES)
 
+def task_judgement_file_path(instance):
+    return 'judgements/{0}/task_{1}'.format(instance.track.title, instance.id)
+
 class Task(models.Model):
 
     track = models.ForeignKey(Track)
-    title = models.CharField(max_length=60)
     task_url = models.URLField(unique=True)
     description = models.CharField(max_length=256)
     year = models.IntegerField()
