@@ -17,6 +17,9 @@ class UserProfile(models.Model):
     display_name = models.CharField(max_length=50)
     organisation = models.CharField(max_length=50)
 
+    def __unicode__(self):
+        return "Username: {0}, Display name: {1}".format(self.user.username, self.display_name)
+
 
 class Track(models.Model):
 
@@ -34,6 +37,11 @@ class Track(models.Model):
 
     genre = models.CharField(max_length=20, choices=GENRE_CHOICES)
 
+    def __unicode__(self):
+        return self.title
+
+#Returns a path of format 'judgements/<Track title>/task_<task id>/'
+#This is where each judgement file will be stored
 def task_judgement_file_path(instance):
     return 'judgements/{0}/task_{1}'.format(instance.track.title, instance.id)
 
@@ -45,7 +53,11 @@ class Task(models.Model):
     year = models.IntegerField()
 
     #Will store judgement (.qrel) files in 'media/judgements/'
-    judgement_file = models.FileField(upload_to='judgements/')
+    judgement_file = models.FileField(upload_to=task_judgement_file_path)
+
+    def __unicode__(self):
+        return "Track: {0}, Task: {1}, Year: {2}".format(self.track,
+                                                     self.description, self.year)
 
 
 class Run(models.Model):
@@ -79,3 +91,6 @@ class Run(models.Model):
         )
 
     query_type = models.CharField(max_length=2, choices=QUERY_CHOICES)
+
+    def __unicode__(self):
+        return "Unique tag: {0}, Submitted by: {1}".format(self.name, self.researcher.username)
