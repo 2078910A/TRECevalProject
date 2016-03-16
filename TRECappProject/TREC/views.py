@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 
 def homepage(request):
-    return render(request, 'TRECapp/homepage.html', {})
+    return render(request, 'TRECapp/index.html', {})
 	
 from TREC.forms import UserForm, UserProfileForm
 

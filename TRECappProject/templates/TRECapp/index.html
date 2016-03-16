@@ -1,10 +1,137 @@
+<!doctype html>
+
 {% extends 'base.html' %}
 
 {% load staticfiles %}
 
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example that shows off a responsive product landing page.">
+
+    <title>TRECHub</title>
+
+    
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+
+
+<!--[if lte IE 8]>
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+  
+<![endif]-->
+<!--[if gt IE 8]><!-->
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  
+<!--<![endif]-->
+
+
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{% static "css/layouts/mainstylesheet.css" %}">
+    <!--<![endif]-->
+
+</head>
+<body>
+
+
+
 {% block body_block %}
+<div class="splash-container">
+	
+    <div class="splash">
+		<div class="splash-logo">
+			<img src="{% static "img/headbig.png" %}" alt="" style="width:333px;height:419px;">
+		</div>
+		<div class="splash-text">
+		<h1 class="splash-head">Join the competition, submit your search system</h1>
+        <p class="splash-subhead">
+            Participate and allow us to evaluate the level of your submission! You will receive feedback together with statistics, graphs and rankings!
+        </p>
+		<div class="pure-form">
+			<form name="signup" action="" method="get" id="signup" novalidate="novalidate">
+			<input type="email" value="Your email address..." name="email" maxlength="256" onfocus="if (value==&#39;Your email address...&#39;) value=&#39;&#39;;" onblur="if (value==&#39;&#39;) value=&#39;Your email address...&#39;;">
+                <span class="tooltip">Enter your email address to sign up</span>
 
-<a href="/rango/register/">Register Here</a>
-<a href="/rango/login/">Login</a>
+			<input type="hidden" name="subscribe" checked="">
+			<button class="pure-button" type="submit">Continue</button>
+		</div>
+		</div>
+        
+    </div>
+</div>
 
+<div class="content-wrapper">
+    <div class="content">
+        
+
+        <div class="pure-g">
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+
+                <h3 class="content-subhead">
+                    <i class="fa fa-tag"></i>
+                    Free Service!
+                </h3>
+                <p>
+                    TRECHub is completely free and can be used as many times as you wish!
+                </p>
+            </div>
+			<div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-clock-o"></i>
+                    Fast & Simple
+                </h3>
+                <p>
+                    Set up your account within seconds and submit your search system. 
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-comment"></i>
+                    Get Feedback
+                </h3>
+                <p>
+                    Receive feedback in different forms and compare your results to others.
+                </p>
+            </div>
+            <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-4">
+                <h3 class="content-subhead">
+                    <i class="fa fa-globe"></i>
+                    Connect!
+                </h3>
+                <p>
+                    Join a network of likeminded users. Share and inspire others.
+                </p>
+            </div>
+			
+            
+        </div>
+    </div>
 {% endblock %}
+	
+
+</div>
+   
+
+  
+
+
+
+
+
+
+
+
+</body>
+</html>

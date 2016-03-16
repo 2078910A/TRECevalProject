@@ -10,9 +10,9 @@ class MyRegistrationView(RegistrationView):
 
 urlpatterns = patterns('',
     url(r'^$', views.homepage, name='homepage'),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^TREC/', include('TREC.urls')),
+    #url(r'^admin/', include(admin.site.urls)),
+    #url(r'^TREC/', include('TREC.urls')),
         #Add in this url pattern to override the default pattern in accounts.
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name='registration_register'),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    #url(r'^accounts/', include('registration.backends.simple.urls')),
 )
