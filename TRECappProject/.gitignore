@@ -1,3 +1,5 @@
 *.pyc
 *~
 .python-version
+db.sqlite3
+TREC/migrations/*.py
