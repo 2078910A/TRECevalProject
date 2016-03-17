@@ -104,5 +104,9 @@ class Run(models.Model):
 
     query_type = models.CharField(max_length=2, choices=QUERY_CHOICES)
 
+    mean_average_precision = models.IntegerField(blank=True)
+    p10 = models.IntegerField(blank=True)
+    p20 = models.IntegerField(blank=True)
+
     def __unicode__(self):
         return "Unique tag: {0}, Submitted by: {1}".format(self.name, self.researcher.username)
