@@ -197,6 +197,7 @@ label {
 
 }
 
+
 .splash {
     /* absolute center .splash within .splash-container */
     width: 1000px;
@@ -287,7 +288,17 @@ label {
     color: #aaa;
 }
 
-/* This is the class used for the footer */
+/* This is the class used for the footer
+
+
+FOR STICKY:
+    background: #111;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 50px;
+    width: 100%; */
+
 .footer {
     background: #111;
 }
@@ -351,3 +362,43 @@ label {
         font-size: 300%;
     }
 }
+
+
+.content-header{
+	height: 55px;
+	background-color:white;
+	width: 1000px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom:10px;
+	border: solid rgba(45, 62, 80, 0.54);
+}
+
+.content-header-separator{
+	float:right;
+	
+}
+
+.content-header-text{
+	float:left;
+	padding-left: 15px;
+	position: relative;
+    bottom: 8px;
+
+}
+
+/*
+ * ABOUT PAGE
+ *
+ * add 100px to bottom of splash container for border to reveal
+ */
+ 
+ 
+ .about-splash{
+	width: 1000px;
+    height: 400px;
+    margin: auto;
+    position: relative;
+	background-color: white;
+	border: solid rgba(45, 62, 80, 0.54);
+ }

@@ -1,0 +1,70 @@
+<!doctype html>
+
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A layout example that shows off a responsive product landing page.">
+
+    <title>TRECHub</title>
+
+    
+
+
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+
+
+
+<!--[if lte IE 8]>
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
+  
+<![endif]-->
+<!--[if gt IE 8]><!-->
+  
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
+  
+<!--<![endif]-->
+
+
+
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="{% static "css/layouts/mainstylesheet.css" %}">
+    <!--<![endif]-->
+
+</head>
+<body>
+
+{% block nav-about %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
+
+
+{% block body_block %}
+<div class="splash-container">
+	<div class="content-header">
+		<div class="content-header-text">
+		<h1>ABOUT</h1>
+		</div>
+		<div class="content-header-separator">
+			<img src="{% static "img/separator.png" %}" alt="" style="height:45px; width: 800px;">
+		</div>
+	</div>
+    <div class="about-splash">
+	
+		
+        
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

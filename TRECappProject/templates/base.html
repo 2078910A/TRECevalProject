@@ -51,10 +51,11 @@
         <img src="{% static "img/treclogo.png" %}" alt="" style="width:201px;height:40px;float:left;">
 
         <ul class="pure-menu-list">
-            <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Leaderboard</a></li>
+            {% block nav-home %}<li class="pure-menu-item"><a href="{% url 'homepage' %}" class="pure-menu-link">Home</a></li>{% endblock %}
+            <li class="pure-menu-item"><a href="" class="pure-menu-link">Leaderboard</a></li>
             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Submit</a></li>
-			<li class="pure-menu-item"><a href="#" class="pure-menu-link">About</a></li>
+			
+			{% block nav-about %}<li class="pure-menu-item"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
 			{% if user.is_authenticated %}
 			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Logout</a></li>
 			{% else %}

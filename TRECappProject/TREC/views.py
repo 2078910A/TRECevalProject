@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 def homepage(request):
     return render(request, 'TRECapp/index.html', {})
+
+def about(request):
+    return render(request, 'TRECapp/about.html', {})
 	
 from TREC.forms import UserForm, UserProfileForm
 
@@ -109,7 +112,9 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render(request, 'rango/login.html', {})
-		
+
+
+
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")

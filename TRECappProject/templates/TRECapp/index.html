@@ -45,7 +45,7 @@
 </head>
 <body>
 
-
+{% block nav-home %}<li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>{% endblock %}
 
 {% block body_block %}
 <div class="splash-container">
@@ -64,8 +64,9 @@
 			<input type="email" value="Your email address..." name="email" maxlength="256" onfocus="if (value==&#39;Your email address...&#39;) value=&#39;&#39;;" onblur="if (value==&#39;&#39;) value=&#39;Your email address...&#39;;">
                 <span class="tooltip">Enter your email address to sign up</span>
 
-			<input type="hidden" name="subscribe" checked="">
+			
 			<button class="pure-button" type="submit">Continue</button>
+			</form>
 		</div>
 		</div>
         
@@ -119,19 +120,8 @@
         </div>
     </div>
 {% endblock %}
-	
 
 </div>
-   
-
-  
-
-
-
-
-
-
-
 
 </body>
 </html>
