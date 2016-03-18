@@ -10,12 +10,7 @@
 
     <title>TRECHub</title>
 
-    
-
-
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-
-
 
 <!--[if lte IE 8]>
   
@@ -28,7 +23,7 @@
   
 <!--<![endif]-->
 
-
+{% block JSBS %}{% endblock %}
 
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
   
@@ -38,6 +33,10 @@
     <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="{% static "css/layouts/mainstylesheet.css" %}">
     <!--<![endif]-->
+	
+	
+
+
 
 </head>
 <body>
@@ -58,7 +57,9 @@
             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Submit</a></li>
 			
 			{% block nav-about %}<li class="pure-menu-item"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
+			
 			{% if user.is_authenticated %}
+			{% block nav-profile %}<li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">Profile</a></li>{% endblock %}
 			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Logout</a></li>
 			{% else %}
 			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Login</a></li>

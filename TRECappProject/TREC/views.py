@@ -15,6 +15,9 @@ def about(request):
 def leaderboard(request):
     return render(request, 'TRECapp/leaderboard.html',{})
 	
+def profile(request):
+    return render(request, 'TRECapp/profile.html',{})
+	
 from TREC.forms import UserForm, UserProfileForm
 
 def register(request):

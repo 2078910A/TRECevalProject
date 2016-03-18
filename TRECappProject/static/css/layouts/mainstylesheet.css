@@ -262,7 +262,7 @@ label {
     /* These styles are required for the "scroll-over" effect */
     width: 100%;
     background: white;
-	padding-bottom: 40px;
+	padding-bottom:40px;
 
 
 
@@ -406,7 +406,7 @@ FOR STICKY:
 	float:left;
 	padding-left: 15px;
 	position: relative;
-    bottom: 8px;
+    bottom: 13px;
 
 }
 
@@ -419,7 +419,7 @@ FOR STICKY:
 	background: #00AEEF;
 
     overflow: hidden;
-    /* The following styles are required for the "scroll-over" effect */
+
     width: 100%;
 
     height: 900px;
@@ -486,4 +486,110 @@ FOR STICKY:
 	border: solid rgba(45, 62, 80, 0.54);
  }
  
+ /*
+ * PROFILE PAGE
+ */
+ 
+ .profile-container{
+	background: #00AEEF;
 
+    overflow: hidden;
+
+    width: 100%;
+
+    height: 900px;
+	padding-top: 60px;
+ }
+ 
+ .profile-splash {
+    width: 1000px;
+    height: 700px;
+    margin: auto;
+    position: relative;
+    background-color: white;
+    border: solid rgba(45, 62, 80, 0.54);
+ 
+ }
+ 
+ .profile-information{
+	width: 300px;
+    height: 700px;
+    position: absolute;
+ }
+ 
+ .profile-name{
+	 text-align: center;
+ }
+ 
+ .profile-role{
+	 text-align: center;
+ }
+ 
+ .profile-image{
+	 text-align:center;
+	 padding-top:10px;
+	 padding-bottom:10px;
+ }
+ 
+ .profile-details{
+	 width:300px;
+	 height:400px;
+	 padding-top:20px;
+	 padding-left:20px;
+	 
+ }
+ 
+.profile-tabs{
+	width:650px;
+	float:right;
+	font-size: large;
+}
+
+.header-profile-submissions{
+	text-align: center;
+}
+.tab-content{
+	
+}
+
+.profile-track-tables{
+	float:right;
+	width:50%;
+	padding-left: 50px;
+	
+}
+
+.profile-track-details{
+	width: 100%;
+    height: 200px;
+	
+	
+}
+.profile-select-and-graph{
+	width:50%;
+	float:left;
+}
+.profile-select-submission{
+	width:100%;
+	
+}
+
+.pure-table.profile {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+    margin: 0 auto;
+    position: absolute;
+    width: 260px;
+ }
+ 
+ .profile-track-scores{
+	width: 100%;
+    height: 210px;
+ }
+ 
+ .profile-submission-graph{
+	 height:300px;
+	 border:1px solid black;
+ }
