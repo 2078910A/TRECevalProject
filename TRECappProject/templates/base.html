@@ -42,17 +42,19 @@
 </head>
 <body>
 
-
+<div class ="wrapper">
 <div class="header">
 	
 	
 	<div class="nav-container">
     <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+	<a href="{% url 'homepage' %}">
         <img src="{% static "img/treclogo.png" %}" alt="" style="width:201px;height:40px;float:left;">
+		</a>
 
         <ul class="pure-menu-list">
             {% block nav-home %}<li class="pure-menu-item"><a href="{% url 'homepage' %}" class="pure-menu-link">Home</a></li>{% endblock %}
-            <li class="pure-menu-item"><a href="" class="pure-menu-link">Leaderboard</a></li>
+            {% block nav-leaderboard %}<li class="pure-menu-item"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Submit</a></li>
 			
 			{% block nav-about %}<li class="pure-menu-item"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
@@ -66,9 +68,9 @@
 		
     </div>
 	</div>
-	
+	</div>
 	{% block body_block %}{% endblock %}
-</div>
+
 
 
 
@@ -77,14 +79,14 @@
 
    
 {% block footer %}
-    <div class="footer l-box is-center">
+    <div class="footer">
         2016 Copyright by TRECHub, LLC. All rights reserved.
     </div>
 {% endblock %}
 
 
 
-
+</div>
 
 
 

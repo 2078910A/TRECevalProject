@@ -14,13 +14,19 @@ html {
 	height: 100%;
 }
 
+
+
 body {
     line-height: 1.7em;
     color: #7f8c8d;
     font-size: 13px;
 	height: 100%;
+	background-color:#00AEEF;
 }
 
+body.index{
+	background-color:#FFF;
+}
 
 h1,
 h2,
@@ -54,7 +60,11 @@ label {
     text-align: center;
 }
 
-
+.wrapper{
+	 min-height:100%;
+	 position:relative;
+	
+ }
 
 /*
  * -- PURE FORM STYLES --
@@ -247,18 +257,25 @@ label {
 	font-size: 120%;
 	margin-left: 10px;
 }
-/*
- * -- CONTENT STYLES --
- * This represents the content area (everything below the blue section)
- */
+
 .content-wrapper {
     /* These styles are required for the "scroll-over" effect */
-  
     width: 100%;
-
-
     background: white;
+	padding-bottom: 40px;
 
+
+
+}
+
+.content-wrapper2 {
+    /* These styles are required for the "scroll-over" effect */
+    width: 100%;
+    background: white;
+	height: 50px;
+	bottom: 0;
+	left: 0;
+	position: absolute;
 
 }
 
@@ -300,7 +317,13 @@ FOR STICKY:
     width: 100%; */
 
 .footer {
-    background: #111;
+    text-align:center;
+	background:#2D3E50;
+	width:100%;
+	height:40px;
+	position:absolute;
+	bottom:0;
+	left:0;
 }
 
 /*
@@ -388,6 +411,66 @@ FOR STICKY:
 }
 
 /*
+* LEADERBOARD PAGE
+*
+*/
+
+.leaderboard-container{
+	background: #00AEEF;
+
+    overflow: hidden;
+    /* The following styles are required for the "scroll-over" effect */
+    width: 100%;
+
+    height: 900px;
+	padding-top: 60px;
+	
+}
+
+ .leaderboard-splash{
+	width: 1000px;
+    height: 700px;
+    margin: auto;
+    position: relative;
+	background-color: white;
+	border: solid rgba(45, 62, 80, 0.54);
+ }
+  .leaderboard-filters{
+	  width: 100%;
+	  position: relative;
+	  text-align: center;
+	  padding-bottom: 15px;
+      padding-top: 15px;
+ }
+ 
+ .leaderboard-track{
+	width: 33%;
+    float: left;
+    position: absolute;
+ }
+ 
+ .leaderboard-sort{
+	 width: 33%;
+	 float: right;
+	 
+ }
+ 
+ .leaderboard-year{
+	 width: 33%;
+	 margin: 0 auto;
+ }
+ 
+
+ .pure-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+ }
+/*
  * ABOUT PAGE
  *
  * add 100px to bottom of splash container for border to reveal
@@ -402,3 +485,5 @@ FOR STICKY:
 	background-color: white;
 	border: solid rgba(45, 62, 80, 0.54);
  }
+ 
+
