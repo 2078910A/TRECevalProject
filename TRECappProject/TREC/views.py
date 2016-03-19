@@ -14,6 +14,12 @@ def homepage(request):
 
 def about(request):
     return render(request, 'TRECapp/about.html', {})
+
+def leaderboard(request):
+    return render(request, 'TRECapp/leaderboard.html',{})
+	
+def profile(request):
+    return render(request, 'TRECapp/profile.html',{})
 	
 from TREC.forms import UserForm, UserProfileForm
 

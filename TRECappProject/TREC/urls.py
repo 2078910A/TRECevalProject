@@ -12,6 +12,8 @@ app_name = 'TREC'
 urlpatterns = patterns('',
     url(r'^$', views.homepage, name='homepage'),
     url(r'^about/$',views.about, name='about'),
+    url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
+    url(r'^profile/$', views.profile, name='profile'),
     #url(r'^admin/', include(admin.site.urls)),
     #url(r'^TREC/', include('TREC.urls')),
     #Add in this url pattern to override the default pattern in accounts.
