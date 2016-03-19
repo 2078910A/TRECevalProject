@@ -8,38 +8,34 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="A layout example that shows off a responsive product landing page.">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A layout example that shows off a responsive product landing page.">
 
     <title>TRECHub</title>
-<link rel='shortcut icon' type='image/x-icon' href="{% static "img/favicon.ico" %}" />
-<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+	<link rel='shortcut icon' type='image/x-icon' href="{% static "img/favicon.ico" %}" />
+		<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
 
 <!--[if lte IE 8]>
-
+  
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-
+  
 <![endif]-->
 <!--[if gt IE 8]><!-->
-
+  
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-
+  
 <!--<![endif]-->
 
 {% block JSBS %}{% endblock %}
 
-<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+  
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
     <![endif]-->
     <!--[if gt IE 8]><!-->
         <link rel="stylesheet" href="{% static "css/layouts/mainstylesheet.css" %}">
     <!--<![endif]-->
-	
-	
-
-
 
 </head>
 <body>
@@ -49,32 +45,30 @@
 	
 	
 	<div class="nav-container">
-    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-	<a href="{% url 'homepage' %}">
-        <img src="{% static "img/treclogo.png" %}" alt="" style="width:201px;height:40px;float:left;">
-		</a>
+		<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+		<a href="{% url 'homepage' %}">
+			<img src="{% static "img/treclogo.png" %}" alt="" style="width:201px;height:40px;float:left;">
+			</a>
 
-        <ul class="pure-menu-list">
-            {% block nav-home %}<li class="pure-menu-item"><a href="{% url 'homepage' %}" class="pure-menu-link">Home</a></li>{% endblock %}
-            {% block nav-leaderboard %}<li class="pure-menu-item"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
-            <li class="pure-menu-item"><a href="#" class="pure-menu-link">Submit</a></li>
+			<ul class="pure-menu-list">
+				{% block nav-home %}<li class="pure-menu-item"><a href="{% url 'homepage' %}" class="pure-menu-link">Home</a></li>{% endblock %}
+				{% block nav-leaderboard %}<li class="pure-menu-item"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
+				{% block nav-about %}<li class="pure-menu-item"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
 			
-			{% block nav-about %}<li class="pure-menu-item"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
-			
-			{% if user.is_authenticated %}
-			<li class="pure-menu-item"><a href="{% url 'logout' %}" class="pure-menu-link">Logout</a></li>
-			{% block nav-profile %}<li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">Profile</a></li>{% endblock %}
-			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Logout</a></li>
-			{% else %}
-			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Login</a></li>
-			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Register</a></li>
-			{% endif %}
-        </ul>
+				{% if user.is_authenticated %}
+				<li class="pure-menu-item"><a href="#" class="pure-menu-link">Submit</a></li>
+				{% block nav-profile %}<li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">Profile</a></li>{% endblock %}
+				<li class="pure-menu-item"><a href="#" class="pure-menu-link">Logout</a></li>
+				{% else %}
+				{% block nav-login %}<li class="pure-menu-item"><a href="{% url 'auth_login' %}" class="pure-menu-link">Login</a></li>{% endblock %}
+				{% block nav-register %}<li class="pure-menu-item"><a href="{% url 'registration_register' %}" class="pure-menu-link">Register</a></li>{% endblock %}
+				{% endif %}
+			</ul>
 		
-    </div>
+		</div>
 	</div>
-	</div>
-	{% block body_block %}{% endblock %}
+</div>
+{% block body_block %}{% endblock %}
 
 
 
@@ -82,7 +76,7 @@
 
 
 
-
+   
 {% block footer %}
     <div class="footer">
         2016 Copyright by TRECHub, LLC. All rights reserved.
