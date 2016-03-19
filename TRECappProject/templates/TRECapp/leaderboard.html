@@ -102,7 +102,7 @@
 	<tbody>
 
                 {% for run in top_runs %}
-                    <tr class="pure-table-odd">
+                    <tr class="{% cycle 'pure-table-odd' '' %}">
                         <td>{{ forloop.counter }}</td>
                         <td>{{ run.researcher }}</td>
                         <td>{{ run.name }}
