@@ -1,5 +1,4 @@
 from django.contrib import admin
-#<<<<<<< HEAD
 from TREC.models import *
 
 
@@ -19,7 +18,6 @@ admin.site.register(Track, TrackAdmin)
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Run)
 #=======
-from TREC.models import UserProfile
 
 #admin.site.register(UserProfile)
 

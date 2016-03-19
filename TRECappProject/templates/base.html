@@ -10,7 +10,7 @@
 
     <title>TRECHub</title>
 
-    
+
 
 
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
@@ -18,20 +18,20 @@
 
 
 <!--[if lte IE 8]>
-  
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-  
+
 <![endif]-->
 <!--[if gt IE 8]><!-->
-  
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-  
+
 <!--<![endif]-->
 
 
 
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-  
+
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
     <![endif]-->
@@ -52,12 +52,12 @@
 
         <ul class="pure-menu-list">
             {% block nav-home %}<li class="pure-menu-item"><a href="{% url 'homepage' %}" class="pure-menu-link">Home</a></li>{% endblock %}
-            <li class="pure-menu-item"><a href="" class="pure-menu-link">Leaderboard</a></li>
+            {% block nav-leaderboard %}<li class="pure-menu-item"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
             <li class="pure-menu-item"><a href="#" class="pure-menu-link">Submit</a></li>
 			
 			{% block nav-about %}<li class="pure-menu-item"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
 			{% if user.is_authenticated %}
-			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Logout</a></li>
+			<li class="pure-menu-item"><a href="{% url 'logout' %}" class="pure-menu-link">Logout</a></li>
 			{% else %}
 			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Login</a></li>
 			<li class="pure-menu-item"><a href="#" class="pure-menu-link">Register</a></li>
@@ -75,7 +75,7 @@
 
 
 
-   
+
 {% block footer %}
     <div class="footer l-box is-center">
         2016 Copyright by TRECHub, LLC. All rights reserved.

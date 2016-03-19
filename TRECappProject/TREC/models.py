@@ -37,7 +37,7 @@ class Track(models.Model):
             ('OT', 'Other'),
         )
 
-    genre = models.CharField(max_length=20, choices=GENRE_CHOICES)
+    genre = models.CharField(max_length=2, choices=GENRE_CHOICES)
 
     def __unicode__(self):
         return self.title
@@ -46,7 +46,7 @@ class Track(models.Model):
         self.slug = slugify(self.title)
         super(Track, self).save(*args, **kwargs)
 
-#Returns a path of format 'judgements/<Track title>/twask_<task id>/'
+#Returns a path of format 'judgements/<Track title>/task_<task id>/'
 #This is where each judgement file will be stored
 def task_judgement_file_path(instance, filename):
     return 'judgements/{0}/{1}'.format(instance.track.slug, instance.slug)
@@ -64,8 +64,8 @@ class Task(models.Model):
     judgement_file = models.FileField(upload_to=task_judgement_file_path)
 
     def __unicode__(self):
-        return "Track: {0}, Task: {1}, Year: {2}".format(self.track,
-                                                     self.title, self.year)
+        return "{0}, Track: {1}, Year: {2}".format(self.title,
+                                                     self.track, self.year)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
@@ -109,4 +109,4 @@ class Run(models.Model):
     p20 = models.IntegerField(blank=True)
 
     def __unicode__(self):
-        return "Unique tag: {0}, Submitted by: {1}".format(self.name, self.researcher.username)
+        return "{0}, Submitted by: {1}".format(self.name, self.researcher.username)

@@ -5,6 +5,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
+from TREC.forms import LeaderboardForm
+from TREC.models import *
+
 
 def homepage(request):
     return render(request, 'TRECapp/index.html', {})
@@ -111,7 +114,37 @@ def user_login(request):
     else:
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
-        return render(request, 'rango/login.html', {})
+        return render(request, 'TRECapp/login.html', {})
+
+
+def leaderboard(request):
+
+    context_dict = {}
+    #Check if we've been sent a form to process data from
+    if request.method == 'POST':
+        form = LeaderboardForm(request.POST)
+        #Can't see why the form wouldn't be valid as it's all drop down menus, but is_valid
+        #initialises the cleaned_data dictionary
+        if form.is_valid():
+            #This is the result type we want to sort runs by
+            sort_attribute = form.cleaned_data['result_type']
+            #This is the track that we want to see runs from
+            search_track = form.cleaned_data['track']
+            #These are the tasks which belong to the track the user has selected
+            search_task = Task.objects.filter(track__title = search_track)
+            #Search for the runs which have been submitted to the task the user has selected and
+            #order them by the attribute the user selected
+            top5runs = Run.objects.filter(task=search_task).order_by('-' + sort_attribute)[:5]
+
+            context_dict['top5runs'] = top5runs
+
+    #Haven't been sent a form so render one for the user
+    else:
+        form = LeaderboardForm()
+
+    context_dict['form'] = form
+
+    return render(request, 'TRECapp/leaderboard.html', context_dict)
 
 
 
@@ -128,4 +161,4 @@ def user_logout(request):
     logout(request)
 
     # Take the user back to the homepage.
-    return HttpResponseRedirect('/rango/')
+    return HttpResponseRedirect('/TRECapp/')
