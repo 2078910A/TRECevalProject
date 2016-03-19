@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-=======
 <!doctype html>
->>>>>>> aa92c01ede799357eca68001b8d6d3a71094b0fd
+
 {% extends 'base.html' %}
 
 {% load staticfiles %}
 
-<<<<<<< HEAD
-
-{% block nav-leaderboard %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
-
-{% block body_block %}
+<!--
 <div class="pure-form">
     <form id="leaderboard" novalidate="novalidate" method="post" action="{% url 'leaderboard' %}" name="leaderboard">
         {% csrf_token %}
@@ -36,22 +30,21 @@
         <button class="pure-button" type="submit">Go</button>
     </form>
 </div>
-{% endblock %}
+-->
 =======
 <!--[if lte IE 8]>
-  
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-  
+
 <![endif]-->
 <!--[if gt IE 8]><!-->
-  
+
     <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-  
+
 <!--<![endif]-->
 
 
 {% block nav-leaderboard %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
-
 
 {% block body_block %}
 <div class="leaderboard-container">
@@ -205,17 +198,15 @@
         </tr>
     </tbody>
 </table>
-        
+
     </div>
 </div>
 
 {% endblock %}
 
-   
 
-    <div class="footer">
-        2016 Copyright by TRECHub, LLC. All rights reserved.
-    </div>
+
+
 
 
 
@@ -224,4 +215,3 @@
 
 </body>
 </html>
->>>>>>> aa92c01ede799357eca68001b8d6d3a71094b0fd
