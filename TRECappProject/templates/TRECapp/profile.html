@@ -17,84 +17,80 @@
 <div class="profile-container">
 	<div class="content-header">
 		<div class="content-header-text">
-		<h1><b>MY PROFILE</b></h1>
+			<h1><b>MY PROFILE</b></h1>
 		</div>
 		<div class="content-header-separator">
 			<img src="{% static "img/separator.png" %}" alt="" style="height:45px; width: 720px;">
 		</div>
 	</div>
     <div class="profile-splash">
-	<div class="profile-information">
-	<div class="profile-name">
-	<h2>Name Surname</h2>
-	</div>
-	<div class="profile-role">
-	<h3>Researcher</h3>
-	</div>
-	<div class="profile-image">
-		<img src="{% static "" %}" alt="" style="height:220px; width: 180px; padding:10px; background-color:#00AEEF">
-	</div>
+		<div class="profile-information">
+			<div class="profile-name">
+				<h2>Name Surname</h2>
+			</div>
+			<div class="profile-role">
+				<h3>Researcher</h3>
+			</div>
+			<div class="profile-image">
+				<img src="{% static "" %}" alt="" style="height:220px; width: 180px; padding:10px; background-color:#00AEEF">
+			</div>
 	
-	<div class="profile-details">
-		<table class="pure-table profile">
-		
+			<div class="profile-details">
+			<table class="pure-table profile">
+				<tbody>
+					<tr>
+						<td style = "width:20px;">Name:</td>
+						<td></td>
 
-		<tbody>
-			<tr>
-				<td style = "width:20px;">Name:</td>
-				<td></td>
+					</tr>
 
-			</tr>
+					<tr>
+						<td>Username:</td>
+						<td></td>
 
-			<tr>
-				<td>Username:</td>
-				<td></td>
+					</tr>
 
-			</tr>
+					<tr>
+						<td>Age:</td>
+						<td></td>
 
-			<tr>
-				<td>Age:</td>
-				<td></td>
-
-			</tr>
+					</tr>
 			
-			<tr>
-				<td>Country:</td>
-				<td></td>
+					<tr>
+						<td>Country:</td>
+						<td></td>
 
-			</tr>
+					</tr>
 			
-			<tr>
-				<td>Organization:</td>
-				<td></td>
+					<tr>
+						<td>Organization:</td>
+						<td></td>
 
-			</tr>
-		</tbody>
-		</table>
+					</tr>
+					</tbody>
+					</table>
 	
-	</div>
+			</div>
 	
 	
-	</div>
-	<div class="profile-tabs">
-		<ul class="nav nav-tabs">
-    <li class="active"><a href="#submission">Submissions</a></li>
-    <li><a href="#aboutme">About Me</a></li>
-    <li><a href="#contact">Contact</a></li>
-
-  </ul>
+		</div>
+		<div class="profile-tabs">
+			<ul class="nav nav-tabs">
+				<li class="active"><a href="#submission">Submissions</a></li>
+				<li><a href="#aboutme">About Me</a></li>
+				<li><a href="#contact">Contact</a></li>
+			</ul>
 
   <div class="tab-content">
     <div id="submission" class="tab-pane fade in active">
 	
       <div class="header-profile-submissions">
-	  <h1>Past Submissions</h1>
+		<h1>Past Submissions</h1>
 	  </div>
 	  <br>
 
 	 <div class="profile-select-and-graph">
       <div class="profile-select-submission">
-		
 			<label for="submission">Select Submission:</label>
 			<select class="form-control" id="submission" style="width:200px;">
 
@@ -102,86 +98,83 @@
 		</div>
 		<br>
 		<br>
-			<div class="profile-submission-graph">
+		<div class="profile-submission-graph">
 			<p>GRAPH GOES HERE</p>
 		</div>
 		
 		</div>
 		
-		
-		
-	
 		<div class="profile-track-tables">
-		<div class="profile-track-details">
-		<table class="pure-table profile">
-    <thead>
-        <tr>
-            <th style="width:20px;">Details</th>
-            <th></th>
+			<div class="profile-track-details">
+				<table class="pure-table profile">
+				<thead>
+				<tr>
+				<th style="width:20px;">Details</th>
+				<th></th>
 
-        </tr>
-    </thead>
+				</tr>
+				</thead>
 
-    <tbody>
-        <tr>
-            <td>Track:</td>
-            <td></td>
+				<tbody>
+				<tr>
+				<td>Track:</td>
+				<td></td>
 
-        </tr>
+				</tr>
 
-        <tr>
-            <td>Task:</td>
-            <td></td>
+				<tr>
+				<td>Task:</td>
+				<td></td>
 
-        </tr>
+				</tr>
 
-        <tr>
-            <td>Date:</td>
-            <td></td>
+				<tr>
+				<td>Date:</td>
+				<td></td>
 
-        </tr>
-    </tbody>
-</table>
-		</div>
+				</tr>
+				</tbody>
+				</table>
+			</div>
 
-		<div class="profile-track-scores">
-		<table class="pure-table profile">
-    <thead>
-        <tr>
-            <th style="width:20px;">Scores</th>
-            <th></th>
+			<div class="profile-track-scores">
+				<table class="pure-table profile">
+				<thead>
+				<tr>
+				<th style="width:20px;">Scores</th>
+				<th></th>
 
-        </tr>
-    </thead>
+				</tr>
+				</thead>
 
-    <tbody>
-        <tr>
-            <td>P10:</td>
-            <td></td>
+				<tbody>
+				<tr>
+				<td>P10:</td>
+				<td></td>
 
-        </tr>
+				</tr>
 
-        <tr>
-            <td>P20:</td>
-            <td></td>
+				<tr>
+				<td>P20:</td>
+				<td></td>
 
-        </tr>
+				</tr>
 
-        <tr>
-            <td>MAP:</td>
-            <td></td>
+				<tr>
+				<td>MAP:</td>
+				<td></td>
 
-        </tr>
+				</tr>
 		
-		<tr>
-            <td>Rank:</td>
-            <td></td>
+				<tr>
+				<td>Rank:</td>
+				<td></td>
 
-        </tr>
-    </tbody>
-</table>
+				</tr>
+				</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
 	
 	
 	
@@ -194,37 +187,34 @@
     <div id="contact" class="tab-pane fade">
       <h3>Contact Details</h3>
 	  <br>
-	  <table class="pure-table profile" style="text-align:center">
+		<table class="pure-table profile" style="text-align:center">
 
 
-    <tbody>
-        <tr>
-			<td style="width:20px;"><i class="fa fa-envelope fa-2x"></i></td>
-            <td></td>
+		<tbody>
+			<tr>
+				<td style="width:20px;"><i class="fa fa-envelope fa-2x"></i></td>
+				<td></td>
+			</tr>
 
-			
+			<tr>
+				<td><i class="fa fa-facebook fa-2x"></i></td>
+				<td></td>
 
-        </tr>
+			</tr>
 
-        <tr>
-            <td><i class="fa fa-facebook fa-2x"></i></td>
-            <td></td>
+			<tr>
+				<td><i class="fa fa-twitter fa-2x"></i></td>
+				<td>@</td>
 
-        </tr>
-
-        <tr>
-            <td><i class="fa fa-twitter fa-2x"></i></td>
-            <td>@</td>
-
-        </tr>
+			</tr>
 		
-		<tr>
-            <td><i class="fa fa-linkedin fa-2x"></i></td>
-            <td></td>
+			<tr>
+				<td><i class="fa fa-linkedin fa-2x"></i></td>
+				<td></td>
 
-        </tr>
-    </tbody>
-</table>
+			</tr>
+		</tbody>
+		</table>
 
     </div>
   </div>
