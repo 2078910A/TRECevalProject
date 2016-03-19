@@ -138,6 +138,7 @@ def leaderboard(request):
             sort_attribute = form.cleaned_data['result_type']
             #This is the track that we want to see runs from
             search_track = form.cleaned_data['track']
+            print form.cleaned_data
             #These are the tasks which belong to the track the user has selected
             search_task = Task.objects.filter(track__title = search_track)
             #Search for the runs which have been submitted to the task the user has selected and
