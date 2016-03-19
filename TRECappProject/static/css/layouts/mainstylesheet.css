@@ -602,6 +602,14 @@ FOR STICKY:
  *REGISTRATION
  */
  
+ .registration-container{
+	background: #00AEEF;
+    overflow: hidden;
+    width: 100%;
+    height: 900px;
+	padding-top: 60px;
+ }
+ 
  .registration-form{
 	 width:350px;
 	 padding-left:50px;
