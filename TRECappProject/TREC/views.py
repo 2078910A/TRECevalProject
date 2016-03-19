@@ -132,6 +132,8 @@ def leaderboard(request):
         #Can't see why the form wouldn't be valid as it's all drop down menus, but is_valid
         #initialises the cleaned_data dictionary
         if form.is_valid():
+            #How many runs should be displayed on the leaderboard
+            num_of_runs = form.cleaned_data['num_of_runs']
             #This is the result type we want to sort runs by
             sort_attribute = form.cleaned_data['result_type']
             #This is the track that we want to see runs from
@@ -140,9 +142,9 @@ def leaderboard(request):
             search_task = Task.objects.filter(track__title = search_track)
             #Search for the runs which have been submitted to the task the user has selected and
             #order them by the attribute the user selected
-            top5runs = Run.objects.filter(task=search_task).order_by('-' + sort_attribute)[:5]
+            top_runs = Run.objects.filter(task=search_task).order_by('-' + sort_attribute)[:num_of_runs]
 
-            context_dict['top5runs'] = top5runs
+            context_dict['top_runs'] = top_runs
 
     #Haven't been sent a form so render one for the user
     else:

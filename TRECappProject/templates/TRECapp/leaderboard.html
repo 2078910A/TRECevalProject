@@ -6,29 +6,7 @@
 
 <!--
 <div class="pure-form">
-    <form id="leaderboard" novalidate="novalidate" method="post" action="{% url 'leaderboard' %}" name="leaderboard">
-        {% csrf_token %}
-        {% for hidden in form.hidden_fields %}
-            {{ hidden }}
-        {% endfor %}
 
-        {% for field in form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text }}
-            {{ field }}
-            <br />
-        {% endfor %}
-
-        {% if top5runs %}
-            {% for run in top5runs %}
-                {{ run.name }}
-            {% endfor %}
-        {% else %}
-            There are no runs!
-        {% endif %}
-
-        <button class="pure-button" type="submit">Go</button>
-    </form>
 </div>
 -->
 =======
@@ -60,7 +38,7 @@
     <div class="leaderboard-splash">
         <div class="leaderboard-filters">
 
-	<div class="leaderboard-track">
+<!--	<div class="leaderboard-track">
 	    <label for="sel1">Select Track:</label>
 	    <select class="form-control" id="sel1" style="width:200px;">
 	        <option>Robust2004</option>
@@ -91,27 +69,60 @@
 	</div>
 		
         </div>
+-->
+        <form id="leaderboard" novalidate="novalidate" method="post" action="{% url 'leaderboard' %}" name="leaderboard">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+                {{ field.label }}
+                {{ field.errors }}
+                {{ field.help_text }}
+                {{ field }}
+            <br />
+            {% endfor %}
+
+        <button class="pure-button" type="submit">Go</button>
 
         <table class="pure-table">
 	<thead>
                 <tr>
                 <th>Rank</th>
                 <th>Username</th>
+                <th>Run</th>
                 <th>P10 Score</th>
                 <th>P20 Score</th>
 	    <th>MAP Score</th>
 	    <th>Overall Evaluation Score</th>
                 </tr>
 	</thead>
+	
+	<tbody>
 
-            <tbody>
+                {% for run in top_runs %}
+                    <tr class="pure-table-odd">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ run.researcher }}</td>
+                        <td>{{ run.name }}
+                        <td>{{ run.p10 }}</td>
+                        <td>{{ run.p20 }}</td>
+                        <td>{{ run.mean_average_precision }}</td>
+                        <td>{{ run.overall }}</td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+
+<!--            <tbody>
                 <tr class="pure-table-odd">
                     <td>1</td>
                     <td></td>
                     <td></td>
                     <td></td>
-	        <td></td>
-	        <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
                 <tr>
@@ -194,7 +205,7 @@
 	        <td></td>
 	        <td></td>
                 </tr>
-    </tbody>
+    </tbody> -->
 </table>
 
     </div>

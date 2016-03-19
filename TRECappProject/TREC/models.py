@@ -107,6 +107,7 @@ class Run(models.Model):
     mean_average_precision = models.IntegerField(blank=True)
     p10 = models.IntegerField(blank=True)
     p20 = models.IntegerField(blank=True)
+    overall = models.IntegerField(blank=True)
 
     def __unicode__(self):
         return "{0}, Submitted by: {1}".format(self.name, self.researcher.username)
