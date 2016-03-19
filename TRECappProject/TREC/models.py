@@ -23,7 +23,7 @@ class UserProfile(models.Model):
 
 class Track(models.Model):
 
-    title = models.CharField(max_length=50, unique=True)
+    title = models.CharField(max_length=50, unique=True, default="")
     track_url = models.URLField(unique=True)
     description = models.CharField(max_length=100)
     slug = models.SlugField(default="")
@@ -54,7 +54,7 @@ def task_judgement_file_path(instance, filename):
 class Task(models.Model):
 
     track = models.ForeignKey(Track)
-    title = models.CharField(max_length=128, unique=True)
+    title = models.CharField(max_length=128, unique=True, default="")
     task_url = models.URLField()
     description = models.CharField(max_length=256)
     year = models.IntegerField(blank=False)
@@ -104,10 +104,10 @@ class Run(models.Model):
 
     query_type = models.CharField(max_length=2, choices=QUERY_CHOICES)
 
-    mean_average_precision = models.IntegerField(blank=True)
-    p10 = models.IntegerField(blank=True)
-    p20 = models.IntegerField(blank=True)
-    overall = models.IntegerField(blank=True)
+    mean_average_precision = models.FloatField(blank=True, default=0.0)
+    p10 = models.FloatField(blank=True, default=0.0)
+    p20 = models.FloatField(blank=True, default=0.0)
+    overall = models.FloatField(blank=True, default=0.0)
 
     def __unicode__(self):
         return "{0}, Submitted by: {1}".format(self.name, self.researcher.username)
