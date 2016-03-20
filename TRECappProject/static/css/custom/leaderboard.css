@@ -51,10 +51,10 @@
 
 #go-button {
     background: #00AEEF;
-    color: #2D3E50;
+    color: white;
 }
 
 #go-button:hover {
     background: white;
-    color: #00AEEF;
+    color: #2D3E50;
 }
