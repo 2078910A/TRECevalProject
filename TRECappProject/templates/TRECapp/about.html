@@ -5,11 +5,24 @@
 {% load staticfiles %}
 
 
+{% block JSBS %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
+
+{% endblock %}
+
 {% block nav-about %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
 
 
 {% block body_block %}
-<div class="splash-container">
+<div class="about-container">
 	<div class="content-header">
 		<div class="content-header-text">
 			<h1>ABOUT</h1>
@@ -19,7 +32,68 @@
 		</div>
 	</div>
     <div class="about-splash">
-
+	<div class="about-splash">
+	<div class="bs-example">
+    <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. What is TREC?</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">
+                    <p>Trec stands for “Text Retrieval Conference,” the event is sponsored by NIST (National Institute for Standards and Technology) and the US Department of Defence. TREC started in 1992 to support research in the field of information retrieval by providing a way for researchers to test their information retrieval systems on large quantities of data. </p>
+                </div>
+            </div>
+        </div>
+		
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">2. What does TREC host?</a>
+                </h4>
+            </div>
+            <div id="collapseTwo" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>TREC hosts a series of competitions each year aimed at further aiding the development of information retrieval systems. In these competitions there are various tracks which are a series of tasks which require the participants to take a large amount of data and perform queries using their information retrieval systems to sort them by their relevance to a set of given requirements.
+					<br><br>The participants respond by uploading data that normally includes a list of documents that they feel are the most relevant to the task’s specifications. Their lists are evaluated based on different criteria and varying degrees of feedback are given, based on the task.
+					<a href="http://trec.nist.gov" target="_blank">Learn more.</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. Where does TRECHub come in?</a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>TREChub aims to provide a service where users (researchers and non-researchers alike) can view information about the various tracks that are currently available to participate in. Researchers will be able to login and create an account where they will be able to share a little about themselves and post links to their own websites. <br><br>
+					Researchers will be able to participate in tracks, where they are allowed to view the tasks and upload their submissions for each task. The evaluation software will offer feedback based on varying criteria, while other researchers as well as well as non-researchers can view statistics relating to the results of the submissions in different forms (e.g. ranking and graphs).</p>
+                </div>
+            </div>
+        </div>
+		<div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">4. What does a track look like?</a>
+                </h4>
+            </div>
+            <div id="collapseFour" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p>A track is given an <b>associated field</b>: A brief description of what the problem domain is, e.g. “Contextual Suggestion Track,” 
+						this track would look at complex information needs based on user interests, etc. <br><br>A track is given a <b>query type</b>: This describes what data is to be submitted by the participant, for example; a list document titles;
+						a list of descriptions; etc.<br><br>A track is given a <b>feedback type</b>: participants may be given relevance feedback, pseudo-feedback, no feedback, etc.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+		
+        
+    </div>
     </div>
 </div>
 {% endblock %}
