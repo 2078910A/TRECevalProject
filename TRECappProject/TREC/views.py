@@ -153,8 +153,6 @@ def leaderboard(request):
 
     return render(request, 'TRECapp/leaderboard.html', context_dict)
 
-
-
 @login_required
 def restricted(request):
     return HttpResponse("Since you're logged in, you can see this text!")

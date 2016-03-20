@@ -17,6 +17,12 @@
     padding: 10px
 }
 
+.task-selector {
+    position: relative;
+    right: 10px;
+    padding: 10px;
+
+}
 
 /*
  * These are the style rules for the dropdown labels

@@ -38,6 +38,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'TREC',
     'registration',                  # personal edit
+    'dajax',
+    'dajaxice'                       #Using these two things for the dynamic dropdown list (Blair)
 )
 
 MIDDLEWARE_CLASSES = (
