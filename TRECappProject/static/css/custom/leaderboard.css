@@ -1,10 +1,21 @@
 /*
+ * These are the style rules for the actual leaderboard
+ * table, rounded corners and such like. (Blair)
+ */
+
+.leaderboard-splash {
+    border-radius: 10px 10px 10px 10px;
+}
+
+
+
+ /*
  * These are the style rules for the actual dropdown
  * selectors.
  */
 
 .track-selector {
-    width: 240px;
+    width: 400px;
     overflow: hidden;
     position: relative;
     padding: 10px;
@@ -19,7 +30,6 @@
 
 .task-selector {
     position: relative;
-    right: 10px;
     padding: 10px;
 
 }
@@ -31,17 +41,20 @@
 .track-label {
     position: relative;
     right: 10px;
-    color: white;
+    color: black;
+    padding: 10px;
     }
 
 .task-label {
     color: white;
     position: relative;
+    padding: 10px;
     }
 
 .sortby-label {
     color: white;
     position: relative;
+    padding: 10px;
     }
 
 /*

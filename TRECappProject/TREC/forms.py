@@ -23,7 +23,7 @@ class LeaderboardForm(forms.Form):
     track_choices = []
     for track in Track.objects.all():
         track_choices += [(track, track)]
-    track = forms.ChoiceField(choices=track_choices, label='Track', widget=forms.Select(attrs={'class': 'track-selector'}))
+    track = forms.ChoiceField(choices=track_choices, label='Track', widget=forms.Select(attrs={'class': 'track-selector', 'data-track': track}))
 
     task_choices = []
     for task in Task.objects.all():

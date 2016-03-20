@@ -2,6 +2,7 @@ from django.conf.urls import patterns, url
 from TREC import views
 from registration.backends.simple.views import RegistrationView
 
+
 # Create a new class that redirects the user to the index page, if successful at logging
 class MyRegistrationView(RegistrationView):
     def get_success_url(self,request, user):
@@ -21,4 +22,5 @@ urlpatterns = patterns('',
     #url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
     url(r'^logout/$', views.user_logout, name='logout'),
+    url(r'^leaderboard/relevant-tasks/$', views.relevant_tasks, name='relevant_tasks'),
 )

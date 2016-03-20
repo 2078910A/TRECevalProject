@@ -126,6 +126,7 @@ def user_login(request):
 def leaderboard(request):
 
     context_dict = {}
+
     #Check if we've been sent a form to process data from
     if request.method == 'POST':
         form = LeaderboardForm(request.POST)
@@ -152,6 +153,12 @@ def leaderboard(request):
     context_dict['form'] = form
 
     return render(request, 'TRECapp/leaderboard.html', context_dict)
+
+def relevant_tasks(request):
+
+    if request.method == 'GET':
+        track = request.GET['track']
+        print track
 
 @login_required
 def restricted(request):
