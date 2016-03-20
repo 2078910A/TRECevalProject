@@ -446,24 +446,24 @@ FOR STICKY:
 	  padding-bottom: 15px;
       padding-top: 15px;
  }
- 
+
  .leaderboard-track{
 	width: 33%;
     float: left;
     position: absolute;
  }
- 
+
  .leaderboard-sort{
 	 width: 33%;
 	 float: right;
-	 
+
  }
- 
+
  .leaderboard-year{
 	 width: 33%;
 	 margin: 0 auto;
  }
- 
+
 
  .pure-table {
     border-collapse: collapse;
@@ -489,11 +489,11 @@ FOR STICKY:
 	background-color: white;
 	border: solid rgba(45, 62, 80, 0.54);
  }
- 
+
  /*
  * PROFILE PAGE
  */
- 
+
  .profile-container{
 	background: #00AEEF;
 
@@ -504,7 +504,7 @@ FOR STICKY:
     height: 900px;
 	padding-top: 60px;
  }
- 
+
  .profile-splash {
     width: 1000px;
     height: 700px;
@@ -512,37 +512,37 @@ FOR STICKY:
     position: relative;
     background-color: white;
     border: solid rgba(45, 62, 80, 0.54);
- 
+
  }
- 
+
  .profile-information{
 	width: 300px;
     height: 700px;
     position: absolute;
  }
- 
+
  .profile-name{
 	 text-align: center;
  }
- 
+
  .profile-role{
 	 text-align: center;
  }
- 
+
  .profile-image{
 	 text-align:center;
 	 padding-top:10px;
 	 padding-bottom:10px;
  }
- 
+
  .profile-details{
 	 width:300px;
 	 height:400px;
 	 padding-top:20px;
 	 padding-left:20px;
-	 
+
  }
- 
+
 .profile-tabs{
 	width:650px;
 	float:right;
@@ -587,12 +587,12 @@ FOR STICKY:
     position: absolute;
     width: 260px;
  }
- 
+
  .profile-track-scores{
 	width: 100%;
     height: 210px;
  }
- 
+
  .profile-submission-graph{
 	 height:300px;
 	 border:1px solid black;
@@ -601,7 +601,7 @@ FOR STICKY:
  /*
  *REGISTRATION
  */
- 
+
  .registration-container{
 	background: #00AEEF;
     overflow: hidden;
@@ -609,7 +609,7 @@ FOR STICKY:
     height: 900px;
 	padding-top: 60px;
  }
- 
+
  .registration-form{
 	 width:350px;
 	 padding-left:50px;

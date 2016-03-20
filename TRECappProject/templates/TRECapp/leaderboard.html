@@ -4,24 +4,9 @@
 
 {% load staticfiles %}
 
-<!--
-<div class="pure-form">
+{% block custom_css %}<link rel="stylesheet" type="text/css" href="{% static 'css/custom/leaderboard.css' %}">{% endblock %}
 
-</div>
--->
-=======
-<!--[if lte IE 8]>
-
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-old-ie-min.css">
-
-<![endif]-->
-<!--[if gt IE 8]><!-->
-
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/grids-responsive-min.css">
-
-<!--<![endif]-->
-
-
+<!-- Turn the word "leaderboard" white on the navbar when on the page -->
 {% block nav-leaderboard %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
 
 {% block body_block %}
@@ -38,53 +23,22 @@
     <div class="leaderboard-splash">
         <div class="leaderboard-filters">
 
-<!--	<div class="leaderboard-track">
-	    <label for="sel1">Select Track:</label>
-	    <select class="form-control" id="sel1" style="width:200px;">
-	        <option>Robust2004</option>
-	        <option>Robust2005</option>
-	        <option>MillionQuery</option>
-	        <option>Terabyte</option>
-	        <option>APNews</option>
-	    </select>
-	</div>
-		
-	<div class="leaderboard-sort">
-	    <label for="sel1">Sort by:</label>
-	    <select class="form-control" id="sel1" style="width:200px;">
-	        <option>Overall Score</option>
-	        <option>P10 Score</option>
-	        <option>P20 Score</option>
-	        <option>MAP Score</option>
-	    </select>
-	</div>
-		
-	<div class="leaderboard-year">
-	    <label for="sel1">Select Year:</label>
-	    <select class="form-control" id="sel1" style="width:200px;">
-	        <option>2016</option>
-	        <option>2015</option>
-	        <option>2014</option>
-	    </select>
-	</div>
-		
-        </div>
--->
+    <span class="pure-form">
         <form id="leaderboard" novalidate="novalidate" method="post" action="{% url 'leaderboard' %}" name="leaderboard">
+            <span>
             {% csrf_token %}
-            {% for hidden in form.hidden_fields %}
-                {{ hidden }}
-            {% endfor %}
-
             {% for field in form.visible_fields %}
-                {{ field.label }}
                 {{ field.errors }}
                 {{ field.help_text }}
+                {{ field.label }}
                 {{ field }}
-            <br />
             {% endfor %}
-
-        <button class="pure-button" type="submit">Go</button>
+            </span>
+        <span>
+            <button id="go-button" class="pure-button" type="submit">Go</button>
+        </span>
+        </form>
+    </span><!-- end pure-form -->
 
         <table class="pure-table">
 	<thead>

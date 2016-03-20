@@ -1,0 +1,24 @@
+.track-selector {
+    width: 225px;
+    overflow: hidden;
+    right: 0px;
+    margin-bottom: 0px;
+    text-color: red;
+}
+
+.leaderboard-filters{
+    background: transparent;
+    background-color: #2D3E50;
+    }
+
+#go-button {
+    background: #00AEEF;
+}
+
+.sortby-seletor {
+    width: 50px;
+}
+
+.pure-form {
+    background: transparent;
+}

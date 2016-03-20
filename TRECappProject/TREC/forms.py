@@ -23,23 +23,26 @@ class LeaderboardForm(forms.Form):
     track_choices = []
     for track in Track.objects.all():
         track_choices += [(track, track)]
-    track = forms.ChoiceField(choices=track_choices, label='Track: ')
+    track = forms.ChoiceField(choices=track_choices, label='Track', widget=forms.Select(attrs={'class': 'track-selector'}))
 
     task_choices = []
     for task in Task.objects.all():
         task_choices += [(task.title, task.title)]
-    task = forms.ChoiceField(choices=task_choices, label='Task: ')
+    task = forms.ChoiceField(choices=task_choices, label='Task', widget=forms.Select(attrs={'class': 'task-selector'}))
 
     result_type_choices = [
         ('mean_average_precision', 'map'),
         ('p10', 'p10'),
         ('p20', 'p20'),
         ]
-    result_type = forms.ChoiceField(choices=result_type_choices, label='Result type: ')
+    result_type = forms.ChoiceField(choices=result_type_choices, label='Sort by', widget=forms.Select(attrs={'class': 'sortby-selector'}))
 
-    run_choices = [
-        (5, '5'),
-        (10, '10'),
-        (20, '20'),
-        ]
-    num_of_runs = forms.ChoiceField(choices=run_choices, label='Number of runs: ')
+
+    #On reflection, this seems like a weird idea. Just display 12 entries on the leaderboard,
+    #fills the page nicer.
+    #run_choices = [
+    #    (5, '5'),
+    #    (10, '10'),
+    #    (20, '20'),
+    #    ]
+    #num_of_runs = forms.ChoiceField(choices=run_choices, label='Number of runs: ')
