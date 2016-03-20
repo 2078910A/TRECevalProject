@@ -58,7 +58,7 @@
 				{% block nav-about %}<li class="pure-menu-item"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
 			
 				{% if user.is_authenticated %}
-				<li class="pure-menu-item"><a href="#" class="pure-menu-link">Submit</a></li>
+				{% block nav-submit %}<li class="pure-menu-item"><a href="{% url 'submit' %}" class="pure-menu-link">Submit</a></li>{% endblock %}
 				{% block nav-profile %}<li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">Profile</a></li>{% endblock %}
 				<li class="pure-menu-item"><a href="#" class="pure-menu-link">Logout</a></li>
 				{% else %}
