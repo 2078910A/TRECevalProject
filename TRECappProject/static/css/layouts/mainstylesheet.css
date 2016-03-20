@@ -407,7 +407,7 @@ FOR STICKY:
 }
 
 .content-header-text{
-	float:centre;
+	float:left;
 	padding-left: 15px;
 	position: relative;
     bottom: 13px;
@@ -480,10 +480,17 @@ FOR STICKY:
  * add 100px to bottom of splash container for border to reveal
  */
 
-
+ .about-container{
+	 background: #00AEEF;
+    overflow: hidden;
+    width: 100%;
+    height: 700px;
+    padding-top: 60px;
+ }
+ 
  .about-splash{
 	width: 1000px;
-    height: 400px;
+    height: 700px;
     margin: auto;
     position: relative;
 	background-color: white;
@@ -613,4 +620,142 @@ FOR STICKY:
  .registration-form{
 	 width:350px;
 	 padding-left:50px;
+ }
+ 
+ /*
+ * SUBMIT PAGE
+ */
+ 
+ .submit-container{
+	background: #00AEEF;
+    overflow: hidden;
+    width: 100%;
+    height: 900px;
+	padding-top: 60px;
+ }
+ 
+ .submit-splash{
+	width: 1000px;
+    height: 550px;
+    margin: auto;
+    position: relative;
+	background-color: white;
+	border: solid rgba(45, 62, 80, 0.54);
+ }
+ 
+ .select-track-task-submit{
+	 position: absolute;
+	 height: 700px;
+	 width:450px;
+	 padding-left:30px;
+ }
+ 
+ .select-track{
+	 padding-top:30px;
+
+ }
+ 
+ .select-task{
+	 padding-top:30px;
+
+ }
+ 
+ .track-description{
+	 height: 300px;
+	 
+ }
+ 
+ .task-description{
+	 
+ }
+ 
+ .upload-submission{
+	 padding-top:40px;
+ }
+ 
+ .track-task-description{
+	 width: 650px;
+	 height:700px;
+	 float:right;
+	 padding-top:30px;
+	 padding-left:30px;
+ }
+ 
+ .pure-table.submit{
+	  border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+    margin: 0 auto;
+    position: absolute;
+    width: 550px;
+ }
+ 
+  /*
+ * SUBMIT PAGE
+ */
+ 
+ .submit-container{
+	background: #00AEEF;
+    overflow: hidden;
+    width: 100%;
+    height: 900px;
+	padding-top: 60px;
+ }
+ 
+ .submit-splash{
+	width: 1000px;
+    height: 550px;
+    margin: auto;
+    position: relative;
+	background-color: white;
+	border: solid rgba(45, 62, 80, 0.54);
+ }
+ 
+ .select-track-task-submit{
+	 position: absolute;
+	 height: 700px;
+	 width:450px;
+	 padding-left:30px;
+ }
+ 
+ .select-track{
+	 padding-top:30px;
+
+ }
+ 
+ .select-task{
+	 padding-top:30px;
+
+ }
+ 
+ .track-description{
+	 height: 300px;
+	 
+ }
+ 
+ .task-description{
+	 
+ }
+ 
+ .upload-submission{
+	 padding-top:40px;
+ }
+ 
+ .track-task-description{
+	 width: 650px;
+	 height:700px;
+	 float:right;
+	 padding-top:30px;
+	 padding-left:30px;
+ }
+ 
+ .pure-table.submit{
+	  border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+    margin: 0 auto;
+    position: absolute;
+    width: 550px;
  }

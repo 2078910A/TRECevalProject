@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^about/$',views.about, name='about'),
     url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
     url(r'^profile/$', views.profile, name='profile'),
+    url(r'^submit/$', views.submit, name='submit'),
     #url(r'^admin/', include(admin.site.urls)),
     #url(r'^TREC/', include('TREC.urls')),
     #Add in this url pattern to override the default pattern in accounts.

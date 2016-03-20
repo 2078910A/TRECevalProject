@@ -1,0 +1,108 @@
+<!doctype html>
+
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+
+
+{% block body_block %}
+
+	<div class="submit-container">
+		<div class="content-header">
+			<div class="content-header-text">
+			<h1>SUBMIT</h1>
+			</div>
+			<div class="content-header-separator">
+				<img src="{% static "img/separator.png" %}" alt="" style="height:45px; width: 720px;">
+			</div>
+		</div>
+		<div class="submit-splash">
+			<div class="select-track-task-submit">
+				<div class="select-track">
+					<label for="sel1"><b>Select Track:</b></label>
+						<select class="form-control" id="sel1" style="width:200px;">
+						<option>Robust2004</option>
+						<option>Robust2005</option>
+						<option>MillionQuery</option>
+						<option>Terabyte</option>
+						<option>APNews</option>
+						</select>
+				</div>
+				<div class="select-task">
+				<label for="sel1"><b>Select Task:</b></label>
+						<select class="form-control" id="sel1" style="width:200px;">
+
+						</select>
+				</div>
+				<div class="upload-submission">
+				<h3>Upload submission</h3>
+				</div>
+			</div>
+		 
+			<div class="track-task-description">
+				<div class="track-description">
+					<table class="pure-table submit">
+						<thead>
+							<tr>
+								<th style="width:100px;">Track</th>
+								<th>[TRACK NAME]</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>Description</td>
+								<td></td>
+
+							</tr>
+
+							<tr>
+								<td>Query Type</td>
+								<td></td>
+
+							</tr>
+
+							<tr>
+								<td>Feedback Type</td>
+								<td></td>
+
+							</tr>
+							
+							<tr>
+								<td>Deadline</td>
+								<td></td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			
+				<div class="task-description">
+					<table class="pure-table submit">
+						<thead>
+							<tr>
+								<th style="width:100px;">Task</th>
+								<th>[TASK NAME]</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>Description</td>
+								<td></td>
+
+							</tr>
+
+						</tbody>
+					</table>
+				
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	{% endblock %}
+   
