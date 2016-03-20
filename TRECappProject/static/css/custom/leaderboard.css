@@ -1,24 +1,60 @@
+/*
+ * These are the style rules for the actual dropdown
+ * selectors.
+ */
+
 .track-selector {
     width: 240px;
     overflow: hidden;
-    right: 0px;
+    position: relative;
+    padding: 10px;
+    right: 10px;
     margin-bottom: 0px;
-    text-color: red;
 }
 
+.sortby-selector {
+    width: 80px;
+    padding: 10px
+}
+
+
+/*
+ * These are the style rules for the dropdown labels
+ * on the leaderboard, i.e Track, Task, Sort by
+ */
+.track-label {
+    position: relative;
+    right: 10px;
+    color: white;
+    }
+
+.task-label {
+    color: white;
+    position: relative;
+    }
+
+.sortby-label {
+    color: white;
+    position: relative;
+    }
+
+/*
+ *These are more general rules (bg color etc.)
+ *
+ */
 .leaderboard-filters{
+    position: relative;
+    margin-bottom: 20px
     background: transparent;
     background-color: #2D3E50;
     }
 
 #go-button {
     background: #00AEEF;
+    color: #2D3E50;
 }
 
-.sortby-seletor {
-    width: 50px;
-}
-
-.pure-form {
-    background: transparent;
+#go-button:hover {
+    background: white;
+    color: #00AEEF;
 }

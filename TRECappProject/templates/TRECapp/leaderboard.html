@@ -26,12 +26,12 @@
     <span class="pure-form">
         <form id="leaderboard" novalidate="novalidate" method="post" action="{% url 'leaderboard' %}" name="leaderboard">
             {% csrf_token %}
-            <span>
+            <!-- <span>
                 {{ form.track.label }}
                 {{ form.track.help_text }}
                 {{ form.track.errors }}
                 {{ form.track }}
-            </span>
+            <span>
             <span>
                 {{ form.task.label }}
                 {{ form.task.help_text }}
@@ -43,20 +43,21 @@
                 {{ form.result_type.help_text }}
                 {{ form.result_type.errors }}
                 {{ form.result_type }}
-            </span>
-            <!--{% for field in form.visible_fields %}
+            </span> -->
+            {% for field in form.visible_fields %}
                 {{ field.errors }}
                 {{ field.help_text }}
+                <span class="{% cycle 'track-label' 'task-label' 'sortby-label' %}">
                 {{ field.label }}
+                </span>
                 {{ field }}
-            {% endfor %} -->
+            {% endfor %}
             </span>
         <span>
             <button id="go-button" class="pure-button" type="submit">Go</button>
         </span>
         </form>
     </span><!-- end pure-form -->
-
         <table class="pure-table">
 	<thead>
                 <tr>
