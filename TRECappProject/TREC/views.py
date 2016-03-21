@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from TREC.forms import LeaderboardForm
 from TREC.models import *
 
+import unicodedata
 
 def homepage(request):
     return render(request, 'TRECapp/index.html', {})
@@ -133,6 +134,7 @@ def leaderboard(request):
     #Check if we've been sent a form to process data from
     if request.method == 'POST':
         form = LeaderboardForm(request.POST)
+        print "method is post"
         #Can't see why the form wouldn't be valid as it's all drop down menus, but is_valid
         #initialises the cleaned_data dictionary
         if form.is_valid():
@@ -155,13 +157,26 @@ def leaderboard(request):
 
     return render(request, 'TRECapp/leaderboard.html', context_dict)
 
-def relevant_tasks(request):
+def ajax_task_request(request):
 
     if request.method == 'GET':
-        track = request.GET['track']
-        #task = Task.objects.get(track__title=track)
-        #print task
-        print request.GET
+
+        #This will hold a value which is the TITLE of the track the user just selected
+        track = request.GET.get('selected_track')
+        #Use the title to get the actual object from the db
+        trackObj = Track.objects.get(title=track)
+        #Use this track object to get a list of all the tasks associated with it
+        taskList = list(Task.objects.filter(track=trackObj))
+
+        taskTitles = []
+
+        for task in taskList:
+            #The task title is returned in unicode, so turn it into a string. Not the
+            #task.title parameter in the .normalize() function.
+            taskTitleString = unicodedata.normalize('NFKD', task.title).encode('ascii', 'ignore')
+            taskTitles = taskTitles + [task.title]
+
+        return render(request, 'TRECapp/relevant-tasks.html', { 'taskTitles': taskTitles })
 
 @login_required
 def restricted(request):

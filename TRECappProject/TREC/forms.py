@@ -20,12 +20,12 @@ class UserProfileForm(forms.ModelForm):
 
 class LeaderboardForm(forms.Form):
 
-    track_choices = []
+    track_choices = [('', '---Choose a Track---')]
     for track in Track.objects.all():
         track_choices += [(track, track)]
-    track = forms.ChoiceField(choices=track_choices, label='Track', widget=forms.Select(attrs={'id': 'track-selector', 'data-track': track}))
+    track = forms.ChoiceField(choices=track_choices, label='Track', widget=forms.Select(attrs={'id': 'track-selector', 'data-track': '{{ form.track.id }}'}))
 
-    task_choices = []
+    task_choices = [('', '---Choose a Task---')]
     for task in Task.objects.all():
         task_choices += [(task.title, task.title)]
     task = forms.ChoiceField(choices=task_choices, label='Task', widget=forms.Select(attrs={'id': 'task-selector'}))
@@ -36,6 +36,7 @@ class LeaderboardForm(forms.Form):
         ('p20', 'p20'),
         ]
     result_type = forms.ChoiceField(choices=result_type_choices, label='Sort by', widget=forms.Select(attrs={'id': 'sortby-selector'}))
+
 
 
     #On reflection, this seems like a weird idea. Just display 12 entries on the leaderboard,
