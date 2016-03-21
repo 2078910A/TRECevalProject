@@ -24,7 +24,9 @@
 				Participate and allow us to evaluate the level of your submission! You will receive feedback together with statistics, graphs and rankings!
 			</p>
 			<div class="pure-form">
-				<form name="signup" action="" method="get" id="signup" novalidate="novalidate">
+			
+				<form name="signup" action="{% url 'register' %}" method="post" id="signup" novalidate="novalidate">
+				{% csrf_token %}
 				<input type="email" value="Your email address..." name="email" maxlength="256" onfocus="if (value==&#39;Your email address...&#39;) value=&#39;&#39;;" onblur="if (value==&#39;&#39;) value=&#39;Your email address...&#39;;">
 				<span class="tooltip">Enter your email address to sign up</span>
 
