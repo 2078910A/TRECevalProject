@@ -17,10 +17,15 @@ def about(request):
 
 def leaderboard(request):
     return render(request, 'TRECapp/leaderboard.html',{})
-	
-def profile(request):
-    return render(request, 'TRECapp/profile.html',{})
 
+@login_required	
+def profile(request):
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    
+    return render(request, 'TRECapp/profile.html',{'profile': profile})
+
+@login_required
 def submit(request):
     return render(request, 'TRECapp/submit.html',{})
 	
