@@ -23,7 +23,7 @@ class LeaderboardForm(forms.Form):
     track_choices = [('', '---Choose a Track---')]
     for track in Track.objects.all():
         track_choices += [(track, track)]
-    track = forms.ChoiceField(choices=track_choices, label='Track', widget=forms.Select(attrs={'id': 'track-selector', 'data-track': '{{ form.track.id }}'}))
+    track = forms.ChoiceField(choices=track_choices, label='Track', widget=forms.Select(attrs={'id': 'track-selector'}))
 
     task_choices = [('', '---Choose a Task---')]
     for task in Task.objects.all():
@@ -31,6 +31,7 @@ class LeaderboardForm(forms.Form):
     task = forms.ChoiceField(choices=task_choices, label='Task', widget=forms.Select(attrs={'id': 'task-selector'}))
 
     result_type_choices = [
+        ('', '---Sort by---'),
         ('mean_average_precision', 'map'),
         ('p10', 'p10'),
         ('p20', 'p20'),

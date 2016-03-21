@@ -8,6 +8,8 @@
 {% block JSBS %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="{% static 'js/leaderboard-ajax.js' %}"></script>
+<script src="{% static 'js/leaderboard.js' %}"></script>
+
 {% endblock %}
 
 
@@ -28,41 +30,19 @@
     <div id="structureOfTable" class="leaderboard-splash">
         <div class="leaderboard-filters">
 
-    <span class="pure-form">
+    <span class="pure-form" id="leaderboard-form-container">
         <form id="leaderboard" novalidate="novalidate" method="post" action="{% url 'leaderboard' %}" name="leaderboard">
             {% csrf_token %}
-            <!-- <span>
-                {{ form.track.label }}
-                {{ form.track.help_text }}
-                {{ form.track.errors }}
-                {{ form.track }}
-            <span>
-            <span>
-                {{ form.task.label }}
-                {{ form.task.help_text }}
-                {{ form.task.errors }}
-                {{ form.task }}
-            </span>
-            <span>
-                {{ form.result_type.label }}
-                {{ form.result_type.help_text }}
-                {{ form.result_type.errors }}
-                {{ form.result_type }}
-            </span> -->
             {% for field in form.visible_fields %}
-                {{ field.errors }}
-                {{ field.help_text }}
-                <span id="{% cycle 'track-label' 'task-label' 'sortby-label' %}">
-                {{ field.label }}
-                </span>
+                <span class="leaderboard-dropdown-content">
                 {{ field }}
+                {{ field.options }}
+                </span>
+                {{ field.help_text }}
             {% endfor %}
-            </span>
-        <span>
             <button id="go-button" class="pure-button" type="submit">Go</button>
-        </span>
         </form>
-    </span><!-- end pure-form -->
+    </span>
         <table id="runTable" class="pure-table">
 	<thead>
                 <tr>
@@ -91,98 +71,6 @@
                 {% endfor %}
 
             </tbody>
-
-<!--            <tbody>
-                <tr class="pure-table-odd">
-                    <td>1</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-
-                <tr class="pure-table-odd">
-                    <td>3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-
-                <tr>
-                    <td>4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-
-                <tr class="pure-table-odd">
-                    <td>5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-
-                <tr>
-                    <td>6</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-
-                <tr class="pure-table-odd">
-                    <td>7</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-
-                <tr>
-                    <td>8</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-		
-	    <tr>
-                    <td>9</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-		
-	    <tr>
-                    <td>10</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-	        <td></td>
-	        <td></td>
-                </tr>
-    </tbody> -->
 </table>
 
     </div>

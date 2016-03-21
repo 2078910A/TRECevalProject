@@ -85,9 +85,9 @@ label {
 }
 
 .pure-form{
-	position: relative;
-	background-color: transparent;
-	padding: 15px;
+    position: relative;
+    background-color: transparent;
+    padding: 15px;
 }
 .tooltip{
 	display: none;
@@ -419,49 +419,81 @@ FOR STICKY:
 *
 */
 
-.leaderboard-container{
-	background: #00AEEF;
-
-    overflow: hidden;
-
-    width: 100%;
-
-    height: 900px;
-	padding-top: 60px;
-	
-}
+ .leaderboard-container{
+     background: #00AEEF;
+     overflow: hidden;
+     width: 100%;
+     height: 900px;
+     padding-top: 60px;	
+ }
 
  .leaderboard-splash{
-	width: 1000px;
-    height: 723px;
-    margin: auto;
-    position: relative;
-	background-color: white;
-	border: solid rgba(45, 62, 80, 0.54);
- }
- .leaderboard-filters {
-	  width: 100%;
-	  position: relative;
-	  text-align: center;
-	  padding-bottom: 15px;
-      padding-top: 15px;
+     width: 1000px;
+     height: 723px;
+     margin: auto;
+     position: relative;
+     background-color: white;
+     border: solid rgba(45, 62, 80, 0.54);
  }
 
- .leaderboard-track{
-	width: 33%;
-    float: left;
-    position: absolute;
+ .leaderboard-filters{
+     display: inline-block;
+     top: 0px;
+     width: 100%;
+     position: relative;
+     text-align: center;
+     padding-bottom: 15px;
+     padding-top: 15px;
  }
 
- .leaderboard-sort{
-	 width: 33%;
-	 float: right;
+ .leaderboard-dropdown-menu {
+     -moz-appearance: none;
+     text-indent: 0.01px;
+     text-overflow: '';
+     display: inline-block;
+     height: 10px;
+     border: 0px;
+     background-color: #00AEEF;
+     color: white;
+     margin: 1px;
+ }
+
+ #leaderboard-form-container {
+    width: 100%;
+}
+
+ #track-selector{
+    text-align: center;
+    border: 0px;
+    background-color: #00AEEF;
+    color: white;
+ }
+
+ #task-selector{
+     text-align: center;
+     border: 0px;
+     background-color: #00AEEF;
+     color: white;
 
  }
 
- .leaderboard-year{
-	 width: 33%;
-	 margin: 0 auto;
+ #sortby-selector{
+     display: inline-block
+     text-align: center;
+     border: 0px;
+     background-color: #00AEEF;
+     color: white;
+ }
+
+ #go-button {
+     bottom: 3px;
+     background: #00AEEF;
+     color: white;
+ }
+
+ #go-button:hover {
+    background: white;
+    color: #2D3E50;
  }
 
 
