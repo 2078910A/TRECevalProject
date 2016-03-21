@@ -20,10 +20,12 @@
 		
 		<form class="pure-form pure-form-stacked" role="form" method="POST">
 		{% csrf_token %}
-
+	
     <fieldset>
         <legend>TRECHub Login</legend>
-
+		{% if loginError %}
+		{{loginError}}
+		{% endif %}
 		
         <label for="username">Username</label>
         <input name="username" id="id_username" type="text" placeholder="Username">

@@ -91,7 +91,8 @@ def register(request):
 			
 	
 def user_login(request):
-    
+     # Dictionary telling us, in case of login error, the nature of the error
+    context = {}
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         # Gather the username and password provided by the user.
@@ -118,20 +119,15 @@ def user_login(request):
                 return HttpResponseRedirect('/TRECapp/')
             else:
                 # An inactive account was used - no logging in!
-                returnHttpResponse("Your TRECHub account is disabled.")
+                context['loginError'] = "Your TRECHub account is disabled."
         else:
             # Bad login details were provided. So we can't log the user in.
+            context['loginError'] = "Your username and password do not match. Try again."
 
-            #print "Invalid login details: {0}, {1}".format(username, password)
-            #return HttpResponse("Invalid login details supplied.")
-             return render('TRECapp/login.html', 
-                       {'invalid': True })
-    # The request is not a HTTP POST, so display the login form.
-    # This scenario would most likely be a HTTP GET.
   
-        # No context variables to pass to the template system, hence the
-        # blank dictionary object...
-    return render(request, 'TRECapp/login.html', {})
+        # Passing context variables to display any errors to user
+
+    return render(request, 'TRECapp/login.html', context)
 
 
 def leaderboard(request):
