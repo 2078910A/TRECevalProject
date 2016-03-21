@@ -140,12 +140,10 @@ def leaderboard(request):
             sort_attribute = form.cleaned_data['result_type']
             #This is the track that we want to see runs from
             search_track = form.cleaned_data['track']
-            print form.cleaned_data
-            #These are the tasks which belong to the track the user has selected
-            search_task = Task.objects.filter(track__title = search_track)
+            taskSearchedFor = form.cleaned_data['task']
             #Search for the runs which have been submitted to the task the user has selected and
             #order them by the attribute the user selected
-            top_runs = Run.objects.filter(task=search_task).order_by('-' + sort_attribute)[:13]
+            top_runs = Run.objects.filter(task__title=taskSearchedFor).order_by('-' + sort_attribute)[:10]
 
             context_dict['top_runs'] = top_runs
 
@@ -161,7 +159,9 @@ def relevant_tasks(request):
 
     if request.method == 'GET':
         track = request.GET['track']
-        print track
+        #task = Task.objects.get(track__title=track)
+        #print task
+        print request.GET
 
 @login_required
 def restricted(request):

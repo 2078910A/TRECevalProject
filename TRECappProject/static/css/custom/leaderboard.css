@@ -3,33 +3,48 @@
  * table, rounded corners and such like. (Blair)
  */
 
-.leaderboard-splash {
+#structureOfTable {
+    height: 553px;
     border-radius: 10px 10px 10px 10px;
 }
 
+#leaderboard {
+    position: relative;
+    height: 0px;
+    bottom: 25px;
+}
 
+#runTable {
+    border-collapse: separate;
+    border-radius: 0px 0px 8px 8px;
+    background-color: #e0e0e0;
+}
 
  /*
  * These are the style rules for the actual dropdown
  * selectors.
  */
 
-.track-selector {
-    width: 400px;
-    overflow: hidden;
+#track-selector {
     position: relative;
+    right: 75px;
+    bottom: 4px;
     padding: 10px;
-    right: 10px;
-    margin-bottom: 0px;
+    width: 240px;
 }
 
-.sortby-selector {
-    width: 80px;
-    padding: 10px
-}
-
-.task-selector {
+#sortby-selector {
     position: relative;
+    right: 25px;
+    bottom: 4px;
+    padding: 10px;
+    width: 80px;
+}
+
+#task-selector {
+    position: relative;
+    right: 50px;
+    bottom: 4px;
     padding: 10px;
 
 }
@@ -38,22 +53,27 @@
  * These are the style rules for the dropdown labels
  * on the leaderboard, i.e Track, Task, Sort by
  */
-.track-label {
+#track-label {
     position: relative;
-    right: 10px;
-    color: black;
+    right: 75px;
+    bottom: 4px;
+    color: white;
     padding: 10px;
     }
 
-.task-label {
-    color: white;
+#task-label {
     position: relative;
+    right: 50px;
+    bottom: 4px;
+    color: white;
     padding: 10px;
     }
 
-.sortby-label {
-    color: white;
+#sortby-label {
     position: relative;
+    right: 15px;
+    bottom: 4px;
+    color: white;
     padding: 10px;
     }
 
@@ -63,12 +83,17 @@
  */
 .leaderboard-filters{
     position: relative;
-    margin-bottom: 20px
+    height: 75px;
+    border-radius: 8px 8px 0px 0px;
+    margin-bottom: 50px;
     background: transparent;
     background-color: #2D3E50;
     }
 
 #go-button {
+    position: relative;
+    left: 20px;
+    bottom: 4px;
     background: #00AEEF;
     color: white;
 }

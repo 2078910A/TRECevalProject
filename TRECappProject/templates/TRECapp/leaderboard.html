@@ -15,7 +15,7 @@
 {% block nav-leaderboard %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'leaderboard' %}" class="pure-menu-link">Leaderboard</a></li>{% endblock %}
 
 {% block body_block %}
-<div class="leaderboard-container">
+<div id="thewholepage" class="leaderboard-container">
     <div class="content-header">
         <div class="content-header-text">
 	<h1>LEADERBOARD</h1>
@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="leaderboard-splash">
+    <div id="structureOfTable" class="leaderboard-splash">
         <div class="leaderboard-filters">
 
     <span class="pure-form">
@@ -52,7 +52,7 @@
             {% for field in form.visible_fields %}
                 {{ field.errors }}
                 {{ field.help_text }}
-                <span class="{% cycle 'track-label' 'task-label' 'sortby-label' %}">
+                <span id="{% cycle 'track-label' 'task-label' 'sortby-label' %}">
                 {{ field.label }}
                 </span>
                 {{ field }}
@@ -63,7 +63,7 @@
         </span>
         </form>
     </span><!-- end pure-form -->
-        <table class="pure-table">
+        <table id="runTable" class="pure-table">
 	<thead>
                 <tr>
                 <th>Rank</th>
@@ -79,7 +79,7 @@
 	<tbody>
 
                 {% for run in top_runs %}
-                    <tr class="{% cycle 'pure-table-odd' '' %}">
+                    <tr class="{% cycle 'pure-table-odd' '' %}" {% if forloop.counter == 10 %}id='lastRun'{% endif %}>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ run.researcher }}</td>
                         <td>{{ run.name }}
