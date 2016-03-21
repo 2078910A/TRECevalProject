@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 
-from TREC.forms import LeaderboardForm
+from TREC.forms import *
 from TREC.models import *
 
 import unicodedata
@@ -18,6 +18,45 @@ def about(request):
 
 def leaderboard(request):
     return render(request, 'TRECapp/leaderboard.html',{})
+
+@login_required
+def editprofile(request):
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+
+    # Check to see if HTTP POST, in order to manipulate data
+    if request.method == 'POST':
+        
+        # Get data (in this case just the username)
+        user_form = UpdateUserForm(request.POST, instance=user)
+        
+        # Get the rest of the data (everything but username, see forms.py)
+        profile_form = UserProfileForm(request.POST, instance=profile)
+
+        # If both forms are valid..
+        if user_form.is_valid() and profile_form.is_valid():
+
+            # Then save data in db
+            user.save()
+
+            # Check for profile picture
+            if 'profilePic' in request.FILES:
+                profile.profilePic = request.FILES['profilePic']
+
+            # Save rest of user profile data
+            profile.save()
+
+            # Redirect to the users profile
+            return HttpResponseRedirect('/TRECapp/profile/')
+    else:
+
+        # Not HTTP POST..
+        user_form = UpdateUserForm(instance=user)
+        profile_form = UserProfileForm(instance=profile)
+
+        # Render template
+    return render(request, 'TRECapp/editprofile.html',
+                  {'user_form': user_form, 'profile_form': profile_form})
 
 @login_required	
 def profile(request):
@@ -76,6 +115,7 @@ def register(request):
             user = authenticate(username=user.username,
                                 password=user_form.cleaned_data['password'])
             login(request, user)
+            
             return HttpResponseRedirect('/TRECapp/')
 
         # Invalid form or forms - mistakes or something else?

@@ -18,6 +18,12 @@ class UserProfileForm(forms.ModelForm):
                 fields = ('profilePic','email','website','display_name','organisation')
 
 
+class UpdateUserForm(forms.ModelForm):
+        class Meta:
+                model = User
+                fields = ('username',)
+
+
 class LeaderboardForm(forms.Form):
 
     track_choices = [('', '---Choose a Track---')]

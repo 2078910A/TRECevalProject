@@ -1,0 +1,49 @@
+<!doctype html>
+
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+
+{% block JSBS %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .bs-example{
+    	margin: 20px;
+    }
+</style>
+
+{% endblock %}
+
+{% block nav-about %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'about' %}" class="pure-menu-link">About</a></li>{% endblock %}
+
+
+{% block body_block %}
+<div class="edit-container">
+	<div class="content-header">
+		<div class="content-header-text">
+			<h1><b>EDIT PROFILE</b></h1>
+		</div>
+		<div class="content-header-separator">
+			<img src="{% static "img/separator.png" %}" alt="" style="height:45px; width: 700px;">
+		</div>
+	</div>
+    <div class="edit-splash">
+		<div class=registration-form>
+		<form class="pure-form pure-form-stacked" method="post" action="{% url 'editprofile' %}">
+		<legend>Edit Profile</legend>
+		{% csrf_token %}
+		{{ user_form.as_p }}
+		{{ profile_form.as_p }}
+		<button type="submit" class="pure-button pure-button-primary">Update</button>
+		</form>
+		</div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>
