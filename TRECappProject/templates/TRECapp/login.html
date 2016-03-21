@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% load staticfiles %}
+
+{% block nav-login %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'auth_login' %}" class="pure-menu-link">Login</a></li>{% endblock %}
+
+{% block body_block %}
+<div class="registration-container">
+	<div class="content-header">
+		<div class="content-header-text">
+			<h1>LOGIN</h1>
+		</div>
+		<div class="content-header-separator">
+			<img src="{% static "img/separator.png" %}" alt="" style="height:45px; width: 720px;">
+		</div>
+	</div>
+    <div class="registration-splash login">
+		<div class="registration-form login">
+		
+		<form class="pure-form pure-form-stacked" role="form" method="POST">
+		{% csrf_token %}
+	
+    <fieldset>
+        <legend>TRECHub Login</legend>
+		{% if loginError %}
+		{{loginError}}
+		{% endif %}
+		
+        <label for="username">Username</label>
+        <input name="username" id="id_username" type="text" placeholder="Username">
+
+        <label for="password">Password</label>
+        <input name="password" id="id_password" type="password" placeholder="Password">
+
+
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+    </fieldset>
+</form>
+        </div>
+		</div>
+</div>
+{% endblock %}

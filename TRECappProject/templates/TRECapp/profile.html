@@ -26,46 +26,39 @@
     <div class="profile-splash">
 		<div class="profile-information">
 			<div class="profile-name">
-				<h2>Name Surname</h2>
+				<h2>{{ profile.display_name }}</h2>
 			</div>
 			<div class="profile-role">
 				<h3>Researcher</h3>
 			</div>
 			<div class="profile-image">
-				<img src="{% static "" %}" alt="" style="height:220px; width: 180px; padding:10px; background-color:#00AEEF">
+				<img src="{{ profile.grabPic }}" alt="" style="height:220px; width: 180px; padding:10px; background-color:#00AEEF">
 			</div>
 	
 			<div class="profile-details">
 			<table class="pure-table profile">
 				<tbody>
 					<tr>
-						<td style = "width:20px;">Name:</td>
-						<td></td>
+						<td style = "width:25px;">Display Name:</td>
+						<td>{{ profile.display_name }}</td>
 
 					</tr>
 
 					<tr>
-						<td>Username:</td>
-						<td></td>
+						<td>Website:</td>
+						<td>{{ profile.website }}</td>
 
 					</tr>
-
+			
 					<tr>
-						<td>Age:</td>
-						<td></td>
+						<td>Organization:</td>
+						<td>{{ profile.organisation }}</td>
 
 					</tr>
 			
 					<tr>
 						<td>Country:</td>
 						<td></td>
-
-					</tr>
-			
-					<tr>
-						<td>Organization:</td>
-						<td></td>
-
 					</tr>
 					</tbody>
 					</table>
@@ -181,7 +174,7 @@
     </div>
 	
     <div id="aboutme" class="tab-pane fade">
-      <h3>About [Name]</h3>
+      <h3>About {{ profile.display_name }}</h3>
       <p></p>
     </div>
     <div id="contact" class="tab-pane fade">
@@ -193,7 +186,7 @@
 		<tbody>
 			<tr>
 				<td style="width:20px;"><i class="fa fa-envelope fa-2x"></i></td>
-				<td></td>
+				<td>{{ profile.email }}</td>
 			</tr>
 
 			<tr>

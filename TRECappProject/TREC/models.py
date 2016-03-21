@@ -12,11 +12,19 @@ def user_profilepic_directory_path(instance, filename):
 class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
-    profilePic = models.ImageField(upload_to='profile_pics')
-    website = models.URLField(blank=True)
-    display_name = models.CharField(max_length=50)
-    organisation = models.CharField(max_length=50)
+    profilePic = models.ImageField(upload_to='profile_pics', blank=True)
+    email = models.EmailField(default="")
+    website = models.URLField(default="",blank=True)
+    display_name = models.CharField(max_length=50,default="")
+    organisation = models.CharField(max_length=50,default="",blank=True)
 
+    def grabPic(self):
+        if self.profilePic:
+            return self.profilePic.url
+        else:
+            return '/media/profile_pics/default.png'
+
+        
     def __unicode__(self):
         return "Username: {0}, Display name: {1}".format(self.user.username, self.display_name)
 

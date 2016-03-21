@@ -18,10 +18,15 @@ def about(request):
 
 def leaderboard(request):
     return render(request, 'TRECapp/leaderboard.html',{})
-	
-def profile(request):
-    return render(request, 'TRECapp/profile.html',{})
 
+@login_required	
+def profile(request):
+    user = request.user
+    profile = UserProfile.objects.get(user=user)
+    
+    return render(request, 'TRECapp/profile.html',{'profile': profile})
+
+@login_required
 def submit(request):
     return render(request, 'TRECapp/submit.html',{})
 	
@@ -37,8 +42,8 @@ def register(request):
     if request.method == 'POST':
         # Attempt to grab information from the raw form information.
         # Note that we make use of both UserForm and UserProfileForm.
-        user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
+        user_form = UserForm(request.POST)
+        profile_form = UserProfileForm(request.POST)
 
         # If the two forms are valid...
         if user_form.is_valid() and profile_form.is_valid():
@@ -58,14 +63,20 @@ def register(request):
 
             # Did the user provide a profile picture?
             # If so, we need to get it from the input form and put it in the UserProfile model.
-            if 'picture' in request.FILES:
-                profile.picture = request.FILES['picture']
+            if 'profilePic' in request.FILES:
+                profile.profilePic = request.FILES['profilePic']
 
             # Now we save the UserProfile model instance.
             profile.save()
 
             # Update our variable to tell the template registration was successful.
             registered = True
+
+            # Sign the user in automatically and redirect to homepage
+            user = authenticate(username=user.username,
+                                password=user_form.cleaned_data['password'])
+            login(request, user)
+            return HttpResponseRedirect('/TRECapp/')
 
         # Invalid form or forms - mistakes or something else?
         # Print problems to the terminal.
@@ -81,12 +92,13 @@ def register(request):
 
     # Render the template depending on the context.
     return render(request,
-            'rango/register.html',
+            'TRECapp/register.html',
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 			
 	
 def user_login(request):
-
+     # Dictionary telling us, in case of login error, the nature of the error
+    context = {}
     # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         # Gather the username and password provided by the user.
@@ -110,21 +122,18 @@ def user_login(request):
                 # If the account is valid and active, we can log the user in.
                 # We'll send the user back to the homepage.
                 login(request, user)
-                return HttpResponseRedirect('/rango/')
+                return HttpResponseRedirect('/TRECapp/')
             else:
                 # An inactive account was used - no logging in!
-                return HttpResponse("Your Rango account is disabled.")
+                context['loginError'] = "Your TRECHub account is disabled."
         else:
             # Bad login details were provided. So we can't log the user in.
-            print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("Invalid login details supplied.")
+            context['loginError'] = "Your username and password do not match. Try again."
 
-    # The request is not a HTTP POST, so display the login form.
-    # This scenario would most likely be a HTTP GET.
-    else:
-        # No context variables to pass to the template system, hence the
-        # blank dictionary object...
-        return render(request, 'TRECapp/login.html', {})
+  
+        # Passing context variables to display any errors to user
+
+    return render(request, 'TRECapp/login.html', context)
 
 
 def leaderboard(request):
