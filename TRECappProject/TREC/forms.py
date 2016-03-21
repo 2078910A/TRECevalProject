@@ -15,7 +15,7 @@ class UserProfileForm(forms.ModelForm):
 
 	class Meta:
                 model = UserProfile
-                fields = ('profilePic','website','display_name','organisation')
+                fields = ('profilePic','email','website','display_name','organisation')
 
 
 class LeaderboardForm(forms.Form):

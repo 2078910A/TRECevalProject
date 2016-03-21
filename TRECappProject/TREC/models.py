@@ -13,6 +13,7 @@ class UserProfile(models.Model):
 
     user = models.OneToOneField(User)
     profilePic = models.ImageField(upload_to='profile_pics', blank=True)
+    email = models.EmailField(default="")
     website = models.URLField(default="",blank=True)
     display_name = models.CharField(max_length=50,default="")
     organisation = models.CharField(max_length=50,default="",blank=True)

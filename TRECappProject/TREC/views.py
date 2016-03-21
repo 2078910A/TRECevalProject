@@ -121,9 +121,11 @@ def user_login(request):
                 returnHttpResponse("Your TRECHub account is disabled.")
         else:
             # Bad login details were provided. So we can't log the user in.
-            print "Invalid login details: {0}, {1}".format(username, password)
-            return HttpResponse("Invalid login details supplied.")
 
+            #print "Invalid login details: {0}, {1}".format(username, password)
+            #return HttpResponse("Invalid login details supplied.")
+             return render('TRECapp/login.html', 
+                       {'invalid': True })
     # The request is not a HTTP POST, so display the login form.
     # This scenario would most likely be a HTTP GET.
   
