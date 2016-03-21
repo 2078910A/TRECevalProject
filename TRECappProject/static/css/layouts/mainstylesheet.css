@@ -597,6 +597,7 @@ FOR STICKY:
     overflow: hidden;
     width: 100%;
 	padding-top: 60px;
+	padding-bottom: 60px;
  }
 
  .registration-form {

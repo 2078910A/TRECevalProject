@@ -62,8 +62,8 @@
 				{% block nav-profile %}<li class="pure-menu-item"><a href="{% url 'profile' %}" class="pure-menu-link">Profile</a></li>{% endblock %}
 				<li class="pure-menu-item"><a href="{% url 'auth_logout' %}?next=/TRECapp/" class="pure-menu-link">Logout</a></li>
 				{% else %}
-				{% block nav-login %}<li class="pure-menu-item"><a href="{% url 'auth_login' %}" class="pure-menu-link">Login</a></li>{% endblock %}
-				{% block nav-register %}<li class="pure-menu-item"><a href="{% url 'registration_register' %}" class="pure-menu-link">Register</a></li>{% endblock %}
+				{% block nav-login %}<li class="pure-menu-item"><a href="{% url 'login' %}" class="pure-menu-link">Login</a></li>{% endblock %}
+				{% block nav-register %}<li class="pure-menu-item"><a href="{% url 'register' %}" class="pure-menu-link">Register</a></li>{% endblock %}
 				{% endif %}
 			</ul>
 		

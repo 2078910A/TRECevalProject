@@ -17,31 +17,12 @@
 	</div>
     <div class="registration-splash">
 		<div class=registration-form>
-		<form class="pure-form pure-form-stacked" style:"padding-left:80px;" method:"POST">
+		<form class="pure-form pure-form-stacked" method="post" action="." enctype="multipart/form-data">
 		<fieldset>
 			<legend>TRECHub Registration</legend>
 				{% csrf_token %}
-
-				<label for="username">Username</label>
-				<input id="username" type="text" placeholder="Username">
-
-				<label for="password">Password</label>
-				<input id="password" type="password" placeholder="Password">
-		
-				<label for="password">Password (again)</label>
-				<input id="password2" type="password" placeholder="Password">
-		
-				<label for="email">Email</label>
-				<input id="email" type="email" placeholder="Email">
-		
-				<label for="organization">Organization</label>
-				<input id="organization" type="text" placeholder="Organization">
-		
-				<label for="email">Profile Picture</label>
-        
-		
-
-				<br>
+				{{ user_form.as_p }}
+				{{ profile_form.as_p }}
 				<button type="submit" class="pure-button pure-button-primary">Submit</button>
 		</fieldset>
 		</form>

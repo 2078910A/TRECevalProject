@@ -8,14 +8,14 @@ class UserForm(forms.ModelForm):
 	password = forms.CharField(widget=forms.PasswordInput())
 
 	class Meta:
-	    model = User
-	    fields = ('username','email','password')
+                model = User
+                fields = ('username','password')
 
 class UserProfileForm(forms.ModelForm):
 
 	class Meta:
-	    model = UserProfile
-                #fields = ('website','picture')
+                model = UserProfile
+                fields = ('profilePic','website','display_name','organisation')
 
 
 class LeaderboardForm(forms.Form):
