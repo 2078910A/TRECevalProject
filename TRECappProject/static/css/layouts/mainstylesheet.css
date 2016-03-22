@@ -458,6 +458,7 @@ FOR STICKY:
      margin: 1px;
  }
 
+
  #leaderboard-form-container {
     width: 100%;
 }
@@ -695,8 +696,7 @@ FOR STICKY:
   /*
  * SUBMIT PAGE
  */
-
- .submit-container{
+.submit-container{
 	background: #00AEEF;
     overflow: hidden;
     width: 100%;
@@ -715,11 +715,15 @@ FOR STICKY:
 
  .select-track-task-submit{
 	 position: absolute;
-	 height: 700px;
-	 width:450px;
+	 height: 300px;
+	 width:400px;
 	 padding-left:30px;
  }
 
+.upload-labels {
+    text-align: center;
+    color: white;
+}
 
  .track-description{
 	 height: 300px;
@@ -733,26 +737,34 @@ FOR STICKY:
  .upload-submission{
      display: block;
      position: relative;
-     width: 20%;
-     left: 10%;
+     padding-left: 33px;
      padding-top: 10px;
+     width: 375px;
+     text-align: center;
  }
 
- #id_track {
-    position: relative;
-    top: 0%;
-    left: 20%;
-}
-
-#id_task {
-    position: relative;
-    right: 28%;
-}
 
 #id_run {
-    position: relative;
-    left: 18%;
+    text-align: left;
 }
+
+ .submit-dropdown {
+     display: inline-block;
+    position: relative;
+     margin-top: 10%;
+     color: white;
+     background-color: #00AEEF;
+     height: 50px;
+     -moz-appearance: none;
+     text-indent: 0.01px;
+     text-overflow: '';
+     border-radius: 8px 8px 8px 8px;
+     border: 0px;
+     text-align: center;
+     width: 250px;
+}
+
+
 
  .track-task-description{
 	 width: 650px;
@@ -772,6 +784,11 @@ FOR STICKY:
     position: absolute;
     width: 550px;
  }
+
+#submit-form {
+    text-align: center;
+    width: 350px;
+}
 
  /*
  * EDIT PROFILE PAGE
