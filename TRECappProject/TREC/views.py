@@ -73,8 +73,8 @@ def otherprofile(request, username):
 
         return render(request, 'TRECapp/profile.html',{'profile': profile})
     except (User.DoesNotExist, UserProfile.DoesNotExist):
-        return HttpResponseRedirect('/TRECapp/') 
-    
+        return HttpResponseRedirect('/TRECapp/')
+
 
 
 from TREC.forms import UserForm, UserProfileForm
@@ -243,6 +243,30 @@ def ajax_task_request(request):
             taskTitles = taskTitles + [task.title]
 
         return render(request, 'TRECapp/relevant-tasks.html', { 'taskTitles': taskTitles })
+
+def ajax_track_task_info_request(request):
+
+    context_dict = {}
+
+    if request.method == 'GET':
+
+        selected_track = request.GET.get('selected_track')
+        selected_task = request.GET.get('selected_task')
+
+        if selected_track:
+
+            trackObj = Track.objects.get(title=selected_track)
+            context_dict['track'] = trackObj
+            template = 'TRECapp/dynamic-track-table.html'
+
+        elif selected_task:
+
+            taskObj = Task.objects.get(title=selected_task)
+            context_dict['task'] = taskObj
+            template = 'TRECapp/dynamic-task-table.html'
+
+    return render(request, template, context_dict)
+
 
 @login_required
 def restricted(request):

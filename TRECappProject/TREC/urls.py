@@ -27,5 +27,6 @@ urlpatterns = patterns('',
     #url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^leaderboard/$', views.leaderboard, name='leaderboard'),
     url(r'^logout/$', views.user_logout, name='logout'),
-    url(r'^leaderboard/relevant-tasks/$', views.ajax_task_request, name='relevant_tasks'),
+    url(r'^relevant-tasks/$', views.ajax_task_request, name='relevant_tasks'),
+    url(r'^track-task-info/$', views.ajax_track_task_info_request, name='get_track_task_info'),
 )

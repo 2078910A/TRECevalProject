@@ -1,0 +1,21 @@
+<thead>
+    <tr>
+        <th style="width:100px;">Task</th>
+        <th>{{ task.title }}</th>
+    </tr>
+</thead>
+
+<tbody>
+    <tr>
+        <td>Description</td>
+        <td>{{ task.description }}</td>
+    </tr>
+    <tr>
+        <td>Website</td>
+        <td><a href="{{ task.task_url }}">{{ task.task_url }}</a></td>
+    </tr>
+    <tr>
+        <td>Year</td>
+        <td>{{ task.year }}</td>
+    </tr>
+</tbody>

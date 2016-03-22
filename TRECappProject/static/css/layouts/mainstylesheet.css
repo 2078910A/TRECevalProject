@@ -725,9 +725,9 @@ FOR STICKY:
     color: white;
 }
 
- .track-description{
-	 height: 300px;
-
+  .track-description{
+     position: relative;
+     height: 40%;
  }
 
  .task-description{
@@ -762,17 +762,20 @@ FOR STICKY:
      border: 0px;
      text-align: center;
      width: 250px;
+     cursor: pointer;
 }
 
 
-
  .track-task-description{
+     position: relative;
 	 width: 650px;
-	 height:700px;
+	 height: 100%;
 	 float:right;
 	 padding-top: 30px;
+     padding-bottom: 30px;
 	 padding-left: 30px;
      margin-top: -8%;
+     text-align: center;
  }
 
  .pure-table.submit{
@@ -784,6 +787,10 @@ FOR STICKY:
     position: absolute;
     width: 550px;
  }
+
+ .pure-table.submit th {
+    text-align: center;
+}
 
 #submit-form {
     text-align: center;
