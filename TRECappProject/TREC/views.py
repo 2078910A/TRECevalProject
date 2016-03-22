@@ -64,7 +64,19 @@ def profile(request):
     profile = UserProfile.objects.get(user=user)
 
     return render(request, 'TRECapp/profile.html',{'profile': profile})
-	
+
+@login_required	
+def otherprofile(request, username):
+    try:
+        user = User.objects.get(username=username)
+        profile = UserProfile.objects.get(user=user)
+
+        return render(request, 'TRECapp/profile.html',{'profile': profile})
+    except (User.DoesNotExist, UserProfile.DoesNotExist):
+        return HttpResponseRedirect('/TRECapp/') 
+    
+
+
 from TREC.forms import UserForm, UserProfileForm
 
 def register(request):

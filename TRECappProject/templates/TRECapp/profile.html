@@ -66,14 +66,15 @@
 					</table>
 	
 			</div>
+			
+
+            {% if user == profile.user %}
 			<div class="edit-profile-button">
 			<form action="{% url 'editprofile' %}">
 				<button type="submit" class="pure-button pure-button-primary editprofile">Edit Profile</button>
 			</form>
-			
-				
 			</div>
-			
+			{% endif %}
 	
 	
 		</div>
