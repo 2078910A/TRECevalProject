@@ -22,7 +22,14 @@
     background-color: #e0e0e0;
 }
 
-
+#leaderboard-dropdown-menu {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
 
 /*
  * These are the style rules for the dropdown labels

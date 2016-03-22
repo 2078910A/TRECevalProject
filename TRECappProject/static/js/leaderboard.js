@@ -1,9 +1,11 @@
 $(document).ready(function() {
 
     $("select").addClass("leaderboard-dropdown-menu");
-    //$("select").wrap("<span class='leaderboard-dropdown'></span>");
-    //$("option").addClass("leaderboard-dropdown-content");
-    //$("#track-selector").children().wrapAll("<div class='leaderboard-dropdown-option'></div>");
-    //$("#task-selector").children().wrapAll("<span class='leaderboard-dropdown-option'></span>");
-    //$("#sortby-selector").children().wrapAll("<span class='leaderboard-dropdown-option'></span>");
+    //$('#track-selector').parent().append('<ul class="ul-leaderboard-dropdown-menu"></ul>');
+    //$('#track-selector option').each(function(){
+        //$('.ul-leaderboard-dropdown-menu').append('<li value="' + $(this).val() + '">'+$(this).text()+'</li>');
+    //});
+    //$('#track-selector').remove();
+    //$('ul-leaderboard-dropdown-menu').attr('id', 'track-selector', 'class', 'leaderboard-dropdown-menu');
+
 });

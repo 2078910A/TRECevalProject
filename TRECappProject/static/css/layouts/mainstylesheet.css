@@ -438,7 +438,7 @@ FOR STICKY:
 
  .leaderboard-filters{
      display: inline-block;
-     top: 0px;
+     bottom: 1%;
      width: 100%;
      position: relative;
      text-align: center;
@@ -478,7 +478,6 @@ FOR STICKY:
  }
 
  #sortby-selector{
-     display: inline-block
      text-align: center;
      border: 0px;
      background-color: #00AEEF;

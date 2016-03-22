@@ -41,6 +41,7 @@ class LeaderboardForm(forms.Form):
         ('mean_average_precision', 'map'),
         ('p10', 'p10'),
         ('p20', 'p20'),
+        ('overall', 'overall'),
         ]
     result_type = forms.ChoiceField(choices=result_type_choices, label='Sort by', widget=forms.Select(attrs={'id': 'sortby-selector'}))
 
@@ -65,7 +66,7 @@ class SubmitForm(forms.Form):
     task_choices = [('', '---Choose a Task---')]
     for task in Task.objects.all():
         task_choices += [(task.title, task.title)]
-    task = forms.ChoiceField(choices=task_choices, label='Select Task')
+    task = forms.ChoiceField(choices=[('', '---Choose a Task---')], label='Select Task')
 
     run = forms.FileField()
 
