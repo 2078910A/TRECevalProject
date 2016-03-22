@@ -1,7 +1,7 @@
 import os
-os.popen("cd")
+os.popen("cd ~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/")
 filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
 judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
-command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
+command = "./trec_eval -c " + judgement + " " + filename
 retvalue = os.popen(command).readlines()
 print retvalue
