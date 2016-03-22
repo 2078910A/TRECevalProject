@@ -34,7 +34,7 @@
         <form id="leaderboard" novalidate="novalidate" method="post" action="{% url 'leaderboard' %}" name="leaderboard">
             {% csrf_token %}
             {% for field in form.visible_fields %}
-                <span class="leaderboard-dropdown-content">
+                <span id="leaderboard-dropdown-content">
                 {{ field }}
                 {{ field.options }}
                 </span>
