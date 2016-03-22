@@ -17,6 +17,7 @@ class UserProfile(models.Model):
     website = models.URLField(default="",blank=True)
     display_name = models.CharField(max_length=50,default="")
     organisation = models.CharField(max_length=50,default="",blank=True)
+    aboutme = models.TextField(max_length=1000,default="",blank=True)
 
     def grabPic(self):
         if self.profilePic:

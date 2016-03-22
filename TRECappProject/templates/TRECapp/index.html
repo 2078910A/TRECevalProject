@@ -23,6 +23,8 @@
 			<p class="splash-subhead">
 				Participate and allow us to evaluate the level of your submission! You will receive feedback together with statistics, graphs and rankings!
 			</p>
+			{% if user.is_authenticated %}
+			{% else %}
 			<div class="pure-form">
 			
 				<form name="signup" action="{% url 'register' %}" method="post" id="signup" novalidate="novalidate">
@@ -33,6 +35,7 @@
 				<button class="pure-button" type="submit">Continue</button>
 				</form>
 			</div>
+			{% endif %}
 		</div>
 
     </div>

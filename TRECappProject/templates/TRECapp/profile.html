@@ -9,6 +9,8 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="{% static "js/tabs.js" %}"></script>{% endblock %}
 
+{% block title %}- {{ profile.display_name }}{% endblock %}
+
 {% block nav-profile %}<li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Profile</a></li>{% endblock %}
 
 {% block body_block %}
@@ -183,7 +185,7 @@
 	
     <div id="aboutme" class="tab-pane fade">
       <h3>About {{ profile.display_name }}</h3>
-      <p></p>
+      <p>{{ profile.aboutme }}</p>
     </div>
     <div id="contact" class="tab-pane fade">
       <h3>Contact Details</h3>
@@ -197,23 +199,7 @@
 				<td>{{ profile.email }}</td>
 			</tr>
 
-			<tr>
-				<td><i class="fa fa-facebook fa-2x"></i></td>
-				<td></td>
-
-			</tr>
-
-			<tr>
-				<td><i class="fa fa-twitter fa-2x"></i></td>
-				<td>@</td>
-
-			</tr>
-		
-			<tr>
-				<td><i class="fa fa-linkedin fa-2x"></i></td>
-				<td></td>
-
-			</tr>
+			
 		</tbody>
 		</table>
 
