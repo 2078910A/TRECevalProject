@@ -31,7 +31,7 @@ def editprofile(request):
         user_form = UpdateUserForm(request.POST, instance=user)
 
         # Get the rest of the data (everything but username, see forms.py)
-        profile_form = UserProfileForm(request.POST, instance=profile)
+        profile_form = UpdateUserProfileForm(request.POST, instance=profile)
 
         # If both forms are valid..
         if user_form.is_valid() and profile_form.is_valid():
@@ -52,7 +52,7 @@ def editprofile(request):
 
         # Not HTTP POST..
         user_form = UpdateUserForm(instance=user)
-        profile_form = UserProfileForm(instance=profile)
+        profile_form = UpdateUserProfileForm(instance=profile)
 
         # Render template
     return render(request, 'TRECapp/editprofile.html',

@@ -17,6 +17,10 @@ class UserProfileForm(forms.ModelForm):
                 model = UserProfile
                 fields = ('profilePic','email','website','display_name','organisation')
 
+class UpdateUserProfileForm(forms.ModelForm):
+        class Meta:
+                model = UserProfile
+                fields = ('profilePic','email','website','display_name','organisation','aboutme')
 
 class UpdateUserForm(forms.ModelForm):
         class Meta:
