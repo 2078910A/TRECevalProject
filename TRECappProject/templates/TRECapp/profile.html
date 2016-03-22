@@ -9,6 +9,8 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="{% static "js/tabs.js" %}"></script>{% endblock %}
 
+{% block title %}- {{ profile.display_name }}{% endblock %}
+
 {% block nav-profile %}<li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Profile</a></li>{% endblock %}
 
 {% block body_block %}
