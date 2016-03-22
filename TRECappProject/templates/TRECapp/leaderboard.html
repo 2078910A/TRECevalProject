@@ -62,7 +62,8 @@
                 {% for run in top_runs %}
                     <tr class="{% cycle 'pure-table-odd' '' %}" {% if forloop.counter == 10 %}id='lastRun'{% endif %}>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ run.researcher }}</td>
+						
+                        <td><a href="{% url 'otherprofile' run.researcher %}">{{ run.researcher }}</a></td>
                         <td>{{ run.name }}
                         <td>{{ run.p10 }}</td>
                         <td>{{ run.p20 }}</td>
