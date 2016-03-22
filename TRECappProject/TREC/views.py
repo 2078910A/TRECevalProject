@@ -26,10 +26,10 @@ def editprofile(request):
 
     # Check to see if HTTP POST, in order to manipulate data
     if request.method == 'POST':
-        
+
         # Get data (in this case just the username)
         user_form = UpdateUserForm(request.POST, instance=user)
-        
+
         # Get the rest of the data (everything but username, see forms.py)
         profile_form = UserProfileForm(request.POST, instance=profile)
 
@@ -62,12 +62,8 @@ def editprofile(request):
 def profile(request):
     user = request.user
     profile = UserProfile.objects.get(user=user)
-    
-    return render(request, 'TRECapp/profile.html',{'profile': profile})
 
-@login_required
-def submit(request):
-    return render(request, 'TRECapp/submit.html',{})
+    return render(request, 'TRECapp/profile.html',{'profile': profile})
 	
 from TREC.forms import UserForm, UserProfileForm
 
@@ -115,7 +111,7 @@ def register(request):
             user = authenticate(username=user.username,
                                 password=user_form.cleaned_data['password'])
             login(request, user)
-            
+
             return HttpResponseRedirect('/TRECapp/')
 
         # Invalid form or forms - mistakes or something else?
@@ -170,11 +166,21 @@ def user_login(request):
             # Bad login details were provided. So we can't log the user in.
             context['loginError'] = "Your username and password do not match. Try again."
 
-  
+
         # Passing context variables to display any errors to user
 
     return render(request, 'TRECapp/login.html', context)
 
+@login_required
+def submit(request):
+    if request.method == 'POST':
+        form = SubmitForm(request.POST, request.FILES)
+        if form.is_valid():
+            pass
+            #Do stuff with the run just uploaded
+    else:
+        form = SubmitForm()
+    return render(request, 'TRECapp/submit.html', {'form': form})
 
 def leaderboard(request):
 
@@ -183,7 +189,6 @@ def leaderboard(request):
     #Check if we've been sent a form to process data from
     if request.method == 'POST':
         form = LeaderboardForm(request.POST)
-        print "method is post"
         #Can't see why the form wouldn't be valid as it's all drop down menus, but is_valid
         #initialises the cleaned_data dictionary
         if form.is_valid():

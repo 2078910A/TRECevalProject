@@ -636,13 +636,13 @@ FOR STICKY:
 	 height:300px;
 	 border:1px solid black;
  }
- 
+
  .edit-profile-button{
 	 height:100px;
 	 text-align:center;
-	 
+
  }
- 
+
 .pure-button.pure-button-primary.editprofile{
 	background: #00AEEF;
 	color:white;
@@ -669,7 +669,7 @@ FOR STICKY:
 	 width:350px;
 	 padding-left:50px;
  }
- 
+
  .registration-splash{
 	width: 1000px;
     margin: auto;
@@ -677,11 +677,11 @@ FOR STICKY:
 	background-color: white;
 	border: solid rgba(45, 62, 80, 0.54);
  }
- 
+
  /*
  * LOGIN
  */
- 
+
 
  .registration-splash.login{
 	width: 1000px;
@@ -691,12 +691,12 @@ FOR STICKY:
 	background-color: white;
 	border: solid rgba(45, 62, 80, 0.54);
  }
- 
- 
+
+
   /*
  * SUBMIT PAGE
  */
- 
+
  .submit-container{
 	background: #00AEEF;
     overflow: hidden;
@@ -704,7 +704,7 @@ FOR STICKY:
     height: 800px;
 	padding-top: 60px;
  }
- 
+
  .submit-splash{
 	width: 1000px;
     height: 550px;
@@ -713,45 +713,57 @@ FOR STICKY:
 	background-color: white;
 	border: solid rgba(45, 62, 80, 0.54);
  }
- 
+
  .select-track-task-submit{
 	 position: absolute;
 	 height: 700px;
 	 width:450px;
 	 padding-left:30px;
  }
- 
- .select-track{
-	 padding-top:30px;
 
- }
- 
- .select-task{
-	 padding-top:30px;
 
- }
- 
  .track-description{
 	 height: 300px;
-	 
+
  }
- 
+
  .task-description{
-	 
+
  }
- 
+
  .upload-submission{
-	 padding-top:40px;
+     display: block;
+     position: relative;
+     width: 20%;
+     left: 10%;
+     padding-top: 10px;
  }
- 
+
+ #id_track {
+    position: relative;
+    top: 0%;
+    left: 20%;
+}
+
+#id_task {
+    position: relative;
+    right: 28%;
+}
+
+#id_run {
+    position: relative;
+    left: 18%;
+}
+
  .track-task-description{
 	 width: 650px;
 	 height:700px;
 	 float:right;
-	 padding-top:30px;
-	 padding-left:30px;
+	 padding-top: 30px;
+	 padding-left: 30px;
+     margin-top: -8%;
  }
- 
+
  .pure-table.submit{
 	  border-collapse: collapse;
     border-spacing: 0;
@@ -761,11 +773,11 @@ FOR STICKY:
     position: absolute;
     width: 550px;
  }
- 
+
  /*
  * EDIT PROFILE PAGE
  */
- 
+
  .edit-container{
 	background: #00AEEF;
     overflow: hidden;

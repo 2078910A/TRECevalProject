@@ -54,3 +54,20 @@ class LeaderboardForm(forms.Form):
     #    (20, '20'),
     #    ]
     #num_of_runs = forms.ChoiceField(choices=run_choices, label='Number of runs: ')
+
+class SubmitForm(forms.Form):
+
+    track_choices = [('', '---Choose a Track---')]
+    for track in Track.objects.all():
+        track_choices += [(track.title, track.title)]
+    track = forms.ChoiceField(choices=track_choices, label='Select Track')
+
+    task_choices = [('', '---Choose a Task---')]
+    for task in Task.objects.all():
+        task_choices += [(task.title, task.title)]
+    task = forms.ChoiceField(choices=task_choices, label='Select Task')
+
+    run = forms.FileField()
+
+    def __init__(self):
+        super(SubmitForm, self).__init__()

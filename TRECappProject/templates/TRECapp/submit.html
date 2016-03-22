@@ -5,6 +5,11 @@
 
 {% block nav-submit %}<li class="pure-menu-item pure-menu-selected"><a href="{% url 'submit' %}" class="pure-menu-link">Submit</a></li>{% endblock %}
 
+{% block JSBS %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="{% static 'js/submit-ajax.js' %}"></script>
+{% endblock %}
+
 {% block body_block %}
 
 	<div class="submit-container">
@@ -17,8 +22,17 @@
 			</div>
 		</div>
 		<div class="submit-splash">
+		    <div class="upload-submission">
+                                <h3>Upload submission</h3>
+	                </div>
 			<div class="select-track-task-submit">
-				<div class="select-track">
+			    <form id="submit-form" enctype="multipart/form-data" method="post" action="{% url 'submit' %}" name="submit-form">
+			        {% csrf_token %}
+			        {% for field in form.visible_fields %}
+			            {{ field }}
+			        {% endfor %}
+			    </form>
+				<!-- <div class="select-track">
 					<label for="sel1"><b>Select Track:</b></label>
 						<select class="form-control" id="sel1" style="width:200px;">
 						<option>Robust2004</option>
@@ -29,16 +43,13 @@
 						</select>
 				</div>
 				<div class="select-task">
-				<label for="sel1"><b>Select Task:</b></label>
-						<select class="form-control" id="sel1" style="width:200px;">
+				<label for="sel2"><b>Select Task:</b></label>
+						<select class="form-control" id="sel2" style="width:200px;">
 
 						</select>
-				</div>
-				<div class="upload-submission">
-				<h3>Upload submission</h3>
-				</div>
+				</div> -->
 			</div>
-		 
+
 			<div class="track-task-description">
 				<div class="track-description">
 					<table class="pure-table submit">
@@ -104,4 +115,3 @@
 		
 	</div>
 	{% endblock %}
-   
