@@ -33,6 +33,7 @@ $(document).ready( function() {
             $('#submit-task-table').empty();
             $('#submit-task-table').append(data);
         });//end task get
+
     });//end select #id_task
 
 

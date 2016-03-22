@@ -393,13 +393,19 @@ FOR STICKY:
 
 .content-header{
 	height: 55px;
-	background-color:white;
+	background-color:#2D3E50;
 	width: 1000px;
 	margin: auto;
 	margin-top: 10px;
 	margin-bottom:10px;
-	border: solid rgba(45, 62, 80, 0.54);
+	border: solid white;
+	border-radius: 8px 8px 8px 8px;
 }
+
+.content-header h1 {
+    color: white;
+}
+
 
 .content-header-separator{
 	float:right;
@@ -407,9 +413,8 @@ FOR STICKY:
 }
 
 .content-header-text{
-	float:left;
-	padding-left: 15px;
-	position: relative;
+    text-align: center;
+    position: relative;
     bottom: 13px;
 
 }
@@ -438,7 +443,6 @@ FOR STICKY:
 
  .leaderboard-filters{
      display: inline-block;
-     bottom: 1%;
      width: 100%;
      position: relative;
      text-align: center;
@@ -505,6 +509,7 @@ FOR STICKY:
     margin: 0 auto;
     position: absolute;
     width: 100%;
+    border-radius: 8px 8px 8px 8px;
  }
 /*
  * ABOUT PAGE
@@ -709,8 +714,9 @@ FOR STICKY:
     height: 550px;
     margin: auto;
     position: relative;
-	background-color: white;
-	border: solid rgba(45, 62, 80, 0.54);
+	background-color: #2D3E50;
+	border: solid white;
+	border-radius: 8px 8px 8px 8px;
  }
 
  .select-track-task-submit{
@@ -743,6 +749,9 @@ FOR STICKY:
      text-align: center;
  }
 
+.upload-submission h3 {
+    color: white;
+}
 
 #id_run {
     text-align: left;
@@ -767,6 +776,7 @@ FOR STICKY:
 
 
  .track-task-description{
+     color: white;
      position: relative;
 	 width: 650px;
 	 height: 100%;
@@ -778,6 +788,17 @@ FOR STICKY:
      text-align: center;
  }
 
+
+.track-task-description th {
+    color: white;
+    background-color: #00AEEF;
+    border-radius: 8px 8px 0px 0px;
+}
+
+ #submit-track-table {
+    border-radius: 8px 8px 8px 8px;
+}
+
  .pure-table.submit{
 	  border-collapse: collapse;
     border-spacing: 0;
@@ -786,6 +807,7 @@ FOR STICKY:
     margin: 0 auto;
     position: absolute;
     width: 550px;
+
  }
 
  .pure-table.submit th {
