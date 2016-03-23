@@ -227,8 +227,8 @@ def submit(request):
             researcher = request.user
             run.task = taskObj
             run.researcher = researcher
+            print run.run_file.path
             run.save()
-            print run.run_file
             return HttpResponseRedirect('/TRECapp/')
     else:
         form = SubmitForm()
