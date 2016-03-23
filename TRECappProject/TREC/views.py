@@ -246,25 +246,27 @@ def submit(request):
                     line = lines.split("\t")
                     map = float(line[2])
                 if "P10" in lines and p10 == "nothing":
-	        line = lines.split("\t")
-	        p10 = float(line[2])
-	    if "P20" in lines and p20 == "nothing":
-	        line = lines.split("\t")
-	        p20 = float(line[2])
-             print type(output)
-             print "\n"
-             print output
-             print map
-             print "\t"
-             print p10
-             print "\t"
-             print p20
-             run.mean_average_precision = map
-             run.p10 = p10
-             run.p20 = p20
-             run.save()
-             print run.run_file
-             return HttpResponseRedirect('/TRECapp/')
+                    
+                    
+                    line = lines.split("\t")
+                    p10 = float(line[2])
+	        if "P20" in lines and p20 == "nothing":
+                    line = lines.split("\t")
+                    p20 = float(line[2])
+        print type(output)
+        print "\n"
+        print output
+        print map
+        print "\t"
+        print p10
+        print "\t"
+        print p20
+        run.mean_average_precision = map
+        run.p10 = p10
+        run.p20 = p20
+        run.save()
+        print run.run_file
+        return HttpResponseRedirect('/TRECapp/')
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})
