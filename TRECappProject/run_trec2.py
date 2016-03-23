@@ -13,7 +13,7 @@ for lines in outputList:
 		line = lines.split("\t")
 		map = float(line[2])
 	if "P10" in lines and p10 == "nothing":
-		line = lines.split("\t"
+		line = lines.split("\t")
 		p10 = float(line[2])
 	if "P20" in lines and p20 == "nothing":
 		line = lines.split("\t")
