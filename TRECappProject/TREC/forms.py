@@ -60,7 +60,23 @@ class LeaderboardForm(forms.Form):
     #    ]
     #num_of_runs = forms.ChoiceField(choices=run_choices, label='Number of runs: ')
 
-class SubmitForm(forms.Form):
+#class SubmitForm(forms.Form):
+
+#    track_choices = [('', '---Choose a Track---')]
+#    for track in Track.objects.all():
+#        track_choices += [(track.title, track.title)]
+#    track = forms.ChoiceField(choices=track_choices, label='Select Track')
+
+#    task_choices = [('', '---Choose a Task---')]
+#    for task in Task.objects.all():
+#        task_choices += [(task.title, task.title)]
+#    task = forms.ChoiceField(choices=task_choices, label='Select Task')
+#
+#    name = forms.CharField(max_length = 4)
+#
+#    run = forms.FileField()
+
+class SubmitForm(forms.ModelForm):
 
     track_choices = [('', '---Choose a Track---')]
     for track in Track.objects.all():
@@ -72,6 +88,11 @@ class SubmitForm(forms.Form):
         task_choices += [(task.title, task.title)]
     task = forms.ChoiceField(choices=task_choices, label='Select Task')
 
-    name = forms.CharField(max_length = 4)
+    class Meta:
+        model = Run
+        fields = ['name', 'run_file']
 
-    run = forms.FileField()
+    def __init__(self, *args, **kwargs):
+        super(SubmitForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget = forms.TextInput(attrs={
+            'placeholder': 'Enter a 4 digit unique tag', 'max_length': 4})
