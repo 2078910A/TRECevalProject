@@ -444,7 +444,7 @@ FOR STICKY:
  .leaderboard-filters{
      display: inline-block;
      width: 100%;
-     position: relative;
+     position: absolute;
      text-align: center;
      padding-bottom: 15px;
      padding-top: 15px;
