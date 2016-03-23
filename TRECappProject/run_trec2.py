@@ -12,10 +12,10 @@ for lines in outputList:
 	if "map" in lines:
 		line = lines.split("\t")
 		map = float(line[2])
-	if "P10" in lines:
+	if "P10" in lines and p10 == "nothing":
 		line = lines.split("\t")
 		p10 = float(line[2])
-	if "P20" in lines:
+	if "P20" in lines and p20 == "nothing":
 		line = lines.split("\t")
 		p20 = float(line[2])
 print type(output) 
@@ -23,6 +23,6 @@ print "\n"
 print output
 print map
 print "\t"
-print p0
+print p10
 print "\t"
 print p20
