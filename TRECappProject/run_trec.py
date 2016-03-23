@@ -7,5 +7,5 @@ filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.b
 judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
 command = "./trec_eval -c " + judgement + " " + filename
 print command
-retvalue = commands.getoutput(command).readlines()
+retvalue = commands.getoutput(command)
 print retvalue
