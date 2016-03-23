@@ -220,14 +220,15 @@ def submit(request):
         form = SubmitForm(request.POST, request.FILES)
 
         if form.is_valid():
-            track = request.POST.get('track')
-            trackObj = Track.objects.get(title=track)
+            #name and run file should be saved to run now but we still need to give it a task and researcher
+            run = form.save(commit=False)
             task = request.POST.get('task')
             taskObj = Task.objects.get(title=task)
-            name = request.POST.get('name')
-            run = Run(task=taskObj, researcher=request.user, name=name, run_file=request.FILES['run'])
+            researcher = request.user
+            run.task = taskObj
+            run.researcher = researcher
             run.save()
-            print run
+            print run.run_file
             return HttpResponseRedirect('/TRECapp/')
     else:
         form = SubmitForm()
