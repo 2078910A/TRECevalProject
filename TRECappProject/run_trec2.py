@@ -5,4 +5,5 @@ command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_e
 print "\n"
 print "command = " + command
 output = subprocess.check_output([command],shell=True)
+print type(output) + "\n"
 print output
