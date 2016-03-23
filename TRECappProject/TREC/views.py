@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import subprocess
 
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -227,9 +228,43 @@ def submit(request):
             researcher = request.user
             run.task = taskObj
             run.researcher = researcher
-            print run.run_file.path
-            run.save()
-            return HttpResponseRedirect('/TRECapp/')
+            filename = "~/TRECevalProject/TRECevalProject/TRECappProject/media/runs/" + str(taskObj.slug) + "/"  + str(run.run_file.name)
+            print filename
+            judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/media/judgements/" + str(taskObj.track.title) + "/" + str(taskObj.judgement_file.name)
+            print judgement
+            map = "nothing"
+            p10 = "nothing"
+	p20 = "nothing"
+	#filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
+	#judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
+	command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
+	print "command = " + command + "\n"
+	output = subprocess.check_output([command],shell=True)
+	outputList = output.split('\n')
+	for lines in outputList:
+                if "map" in lines:
+                    line = lines.split("\t")
+                    map = float(line[2])
+                if "P10" in lines and p10 == "nothing":
+	        line = lines.split("\t")
+	        p10 = float(line[2])
+	    if "P20" in lines and p20 == "nothing":
+	        line = lines.split("\t")
+	        p20 = float(line[2])
+             print type(output)
+             print "\n"
+             print output
+             print map
+             print "\t"
+             print p10
+             print "\t"
+             print p20
+             run.mean_average_precision = map
+             run.p10 = p10
+             run.p20 = p20
+             run.save()
+             print run.run_file
+             return HttpResponseRedirect('/TRECapp/')
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})
