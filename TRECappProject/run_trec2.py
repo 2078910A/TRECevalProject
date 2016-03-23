@@ -14,10 +14,12 @@ for lines in outputList:
 		map = float(line[2])
 	if "P10" in lines:
 		line = lines.split("\t")
-		p10 = float(line[2])
+		if line[0] = "P10":
+			p10 = float(line[2])
 	if "P20" in lines:
 		line = lines.split("\t")
-		p20 = float(line[2])
+		if line[0] = "P20":
+			p20 = float(line[2])
 print type(output) 
 print "\n"
 print output
