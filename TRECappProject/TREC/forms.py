@@ -95,4 +95,4 @@ class SubmitForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(SubmitForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget = forms.TextInput(attrs={
-            'placeholder': 'Enter a 4 digit unique tag', 'max_length': 4})
+            'placeholder': 'Enter a 4 digit unique ID for your run'})
