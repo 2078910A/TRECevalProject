@@ -24,7 +24,7 @@
 		</div>
 		<div class="submit-splash">
 			<div class="select-track-task-submit">
-			    <form id="submit-form" enctype="multipart/form-data" method="post" action="{% url 'submit' %}" name="submit-form">
+			    <form id="submit-form" enctype="multipart/form-data" method="POST" action="{% url 'submit' %}" name="submit-form">
 			        {% csrf_token %}
 			        {% for field in form.visible_fields %}
 			            <span id="{% cycle 'track-dropdown' 'task-dropdown' 'run-upload' %}" class="submit-dropdown-field">

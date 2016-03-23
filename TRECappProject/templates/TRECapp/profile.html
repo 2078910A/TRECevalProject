@@ -4,10 +4,15 @@
 
 {% load staticfiles %}
 
-{% block JSBS %}	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+{% load TRECextras %}
+
+{% block JSBS %}
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<script src="{% static "js/tabs.js" %}"></script>{% endblock %}
+<script src="{% static 'js/tabs.js' %}"></script>
+<script src="{% static 'js/profile-ajax.js' %}"></script>
+{% endblock %}
 
 {% block title %}- {{ profile.display_name }}{% endblock %}
 
@@ -97,6 +102,10 @@
       <div class="profile-select-submission">
 			<label for="submission">Select Submission:</label>
 			<select class="form-control" id="submission" style="width:200px;">
+			    <option value="">---Select a Run---</option>
+			    {% for run in runs %}
+			        <option value="{{ run.title|upper }}">{{ run.title|upper }}</option>
+			    {% endfor %}
 
 			</select>
 		</div>
@@ -108,7 +117,7 @@
 		
 		</div>
 		
-		<div class="profile-track-tables">
+		<div id="user-ranking-info" class="profile-track-tables">
 			<div class="profile-track-details">
 				<table class="pure-table profile">
 				<thead>

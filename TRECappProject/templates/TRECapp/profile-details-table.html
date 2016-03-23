@@ -1,0 +1,52 @@
+<div class="profile-track-details">
+    <table class="pure-table profile">
+        <thead>
+            <tr>
+                <th style="width:20px;">Details</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Track:</td>
+                <td>{{ track.title }}</td>
+            </tr>
+            <tr>
+                <td>Task:</td>
+                <td>{{ task.title }}</td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td>-</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="profile-track-scores">
+    <table class="pure-table profile">
+        <thead>
+            <tr>
+                <th style="width:20px;">Scores</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>P10:</td>
+                <td>{{ run.p10 }}</td>
+            </tr>
+            <tr>
+                <td>P20:</td>
+                <td>{{ run.p20 }}</td>
+            </tr>
+            <tr>
+                <td>MAP:</td>
+                <td>{{ run.mean_average_precision }}</td>
+            </tr>
+            <tr>
+                <td>Rank:</td>
+                <td>{{ rank }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

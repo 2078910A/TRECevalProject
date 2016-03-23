@@ -62,16 +62,46 @@ def editprofile(request):
 def profile(request):
     user = request.user
     profile = UserProfile.objects.get(user=user)
+    ownRuns = Run.objects.filter(researcher=user)
+    runTitles = []
+    for run in ownRuns:
+        runTitles += [run.name]
+    return render(request, 'TRECapp/profile.html',{'profile': profile, 'runs': runTitles})
 
-    return render(request, 'TRECapp/profile.html',{'profile': profile})
+def calculateRank(run, task):
+    allRunsDesc = Run.objects.filter(task__title=task.title).order_by('-overall')
+    rank = 1
+    for otherRun in allRunsDesc:
+        if run.name == otherRun.name:
+            break
+        rank += 1
+    return rank
+
+def ajax_profile_info_request(request):
+    context_dict = {}
+    if request.method == 'GET':
+        selected_run = request.GET.get('selected_run')
+        run = Run.objects.get(name=selected_run)
+        relevant_task = run.task
+        relevant_track = relevant_task.track
+        rank = calculateRank(run, relevant_task)
+        context_dict['run'] = run
+        context_dict['task'] = relevant_task
+        context_dict['track'] = relevant_track
+        context_dict['rank'] = rank
+        return render(request, 'TRECapp/profile-details-table.html', context_dict)
+
 
 @login_required	
 def otherprofile(request, username):
     try:
         user = User.objects.get(username=username)
         profile = UserProfile.objects.get(user=user)
-
-        return render(request, 'TRECapp/profile.html',{'profile': profile})
+        othersRuns = Run.objects.filter(researcher=user)
+        runTitles = []
+        for run in othersRuns:
+            runTitles += [run.name]
+        return render(request, 'TRECapp/profile.html',{'profile': profile, 'runs': runTitles})
     except (User.DoesNotExist, UserProfile.DoesNotExist):
         return HttpResponseRedirect('/TRECapp/')
 
@@ -185,10 +215,11 @@ def user_login(request):
 
 @login_required
 def submit(request):
+
     if request.method == 'POST':
         form = SubmitForm(request.POST, request.FILES)
         if form.is_valid():
-            pass
+            return HttpResponseRedirect('/TRECapp/')
             #Do stuff with the run just uploaded
     else:
         form = SubmitForm()

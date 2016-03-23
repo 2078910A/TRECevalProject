@@ -29,4 +29,5 @@ urlpatterns = patterns('',
     url(r'^logout/$', views.user_logout, name='logout'),
     url(r'^relevant-tasks/$', views.ajax_task_request, name='relevant_tasks'),
     url(r'^track-task-info/$', views.ajax_track_task_info_request, name='get_track_task_info'),
+    url(r'^profile-info/', views.ajax_profile_info_request, name='get_profile_info'),
 )
