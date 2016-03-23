@@ -23,6 +23,6 @@ print "\n"
 print output
 print map
 print "\t"
-print p0
+print p10
 print "\t"
 print p20
