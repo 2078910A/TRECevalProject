@@ -438,13 +438,14 @@ FOR STICKY:
      margin: auto;
      position: relative;
      background-color: white;
-     border: solid rgba(45, 62, 80, 0.54);
+     border: solid #2D3E50;
  }
 
  .leaderboard-filters{
      display: inline-block;
      width: 100%;
      position: absolute;
+     top: -1px;
      text-align: center;
      padding-bottom: 15px;
      padding-top: 15px;

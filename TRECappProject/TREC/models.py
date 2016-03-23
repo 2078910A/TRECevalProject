@@ -25,7 +25,7 @@ class UserProfile(models.Model):
         else:
             return '/media/profile_pics/default.png'
 
-        
+
     def __unicode__(self):
         return "Username: {0}, Display name: {1}".format(self.user.username, self.display_name)
 
@@ -80,12 +80,17 @@ class Task(models.Model):
         self.slug = slugify(self.title)
         super(Task, self).save(*args, **kwargs)
 
+def run_path(instance, filename):
+    filename = "user_{0}".format(instance.researcher.username)
+    return "runs/{0}/{1}/{2}".format(instance.task.track.slug, instance.task.slug, filename)
+
 
 class Run(models.Model):
 
     task = models.ForeignKey(Task)
     researcher = models.ForeignKey(User)
     name = models.CharField(max_length=4, unique=True)
+    run_file = models.FileField(upload_to=run_path)
 
     RUN_CHOICES = (
             ('MA', 'Manual'),

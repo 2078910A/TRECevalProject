@@ -70,9 +70,8 @@ class SubmitForm(forms.Form):
     task_choices = [('', '---Choose a Task---')]
     for task in Task.objects.all():
         task_choices += [(task.title, task.title)]
-    task = forms.ChoiceField(choices=[('', '---Choose a Task---')], label='Select Task')
+    task = forms.ChoiceField(choices=task_choices, label='Select Task')
+
+    name = forms.CharField(max_length = 4)
 
     run = forms.FileField()
-
-    def __init__(self):
-        super(SubmitForm, self).__init__()

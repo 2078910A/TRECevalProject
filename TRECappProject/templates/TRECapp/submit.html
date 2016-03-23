@@ -29,8 +29,10 @@
 			        {% for field in form.visible_fields %}
 			            <span id="{% cycle 'track-dropdown' 'task-dropdown' 'run-upload' %}" class="submit-dropdown-field">
 			            {{ field }}
+			            {{ field.errors }}
 			            </span>
 			        {% endfor %}
+			        {{ form.docfile }}
 			        <span class="submit-go-button-container">
 			        <button id="submit-go-button" class="pure-button" type="submit">Upload</button>
 			        </span>

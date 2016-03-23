@@ -218,9 +218,17 @@ def submit(request):
 
     if request.method == 'POST':
         form = SubmitForm(request.POST, request.FILES)
+
         if form.is_valid():
+            track = request.POST.get('track')
+            trackObj = Track.objects.get(title=track)
+            task = request.POST.get('task')
+            taskObj = Task.objects.get(title=task)
+            name = request.POST.get('name')
+            run = Run(task=taskObj, researcher=request.user, name=name, run_file=request.FILES['run'])
+            run.save()
+            print run
             return HttpResponseRedirect('/TRECapp/')
-            #Do stuff with the run just uploaded
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})
