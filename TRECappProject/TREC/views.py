@@ -228,12 +228,13 @@ def submit(request):
             researcher = request.user
             run.task = taskObj
             run.researcher = researcher
-            filename = "~/TRECevalProject/TRECevalProject/TRECappProject/media/runs/" + str(taskObj.slug) + "/"  + str(run.run_file.name) + "qrels"
-            judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/media/judgements/" + str(taskObj.track.title) + "/" + str(taskObj.judgement_file.name)
+            filename = "~/TRECevalProject/TRECevalProject/TRECappProject/media/runs/" + str(taskObj.slug) + "/"  + str(run.run_file.name)
+            judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/media/judgements/" + str(taskObj.track.title) + "/" + str(taskObj.judgement_file.name) + "qrels"
             #filename = str(run.run_file)
             print judgement
             print filename
             run.save()
+            run = SubmitForm(.objects.get(task = taskObj)
             map = "nothing"
             p10 = "nothing"
             p20 = "nothing"
