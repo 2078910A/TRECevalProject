@@ -1,6 +1,13 @@
 # TRECevalProject
-Our WAD2 Class project
 
-Following lines are commented out due to error:
-forms.py line 16
-urls.py lines 13,14,17
+Lab Wednesday 2-4 Group C
+
+##Project Members
+
+2085099 - Maximilian Morell, 2085099M
+2078910A - Blair Aitcheson, 2078910A
+tierney12 - Sean Tierney, 
+zixk - Dominik Bladek, 2144751B
+
+##Installation
+
