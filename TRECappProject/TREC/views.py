@@ -1,6 +1,5 @@
 from django.shortcuts import render
 import subprocess
-import os
 
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -230,10 +229,8 @@ def submit(request):
             run.task = taskObj
             run.researcher = researcher
             filename = "~/TRECevalProject/TRECevalProject/TRECappProject/media/runs/" + str(taskObj.slug) + "/"  + str(run.run_file.name)
-            filename = str(os.path.abspath(run.run_file))
             print filename
-            judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/media/judgements/" + str(taskObj.track.title) + "/" + str(taskObj.judgement_file.name)+ ".qrels"
-            judgement = str(os.path.abspath(taskObj.judgement_file))
+            judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/media/judgements/" + str(taskObj.track.title) + "/" + str(taskObj.judgement_file.name)
             print judgement
             map = "nothing"
             p10 = "nothing"
