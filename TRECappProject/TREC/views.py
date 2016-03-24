@@ -1,6 +1,6 @@
 from django.shortcuts import render
 import subprocess
-from os import *
+import os
 
 from django.http import HttpResponse, HttpResponseRedirect
 
