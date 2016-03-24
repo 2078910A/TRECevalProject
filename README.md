@@ -2,6 +2,7 @@
 
 Lab Wednesday 2-4 Group C
 
+***
 ##Project Members
 
 2085099 - Maximilian Morell, 2085099M
@@ -27,7 +28,8 @@ mkvirtualenv trecapp
 ```
 
 3. Work on new virtual environment:
-```workon trecapp
+```
+workon trecapp
 ```
 
 4. Install requirements:
