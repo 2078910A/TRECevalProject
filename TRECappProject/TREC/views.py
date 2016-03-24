@@ -235,7 +235,7 @@ def submit(request):
             print judgement
             print filename
             run.save()
-            run = SubmitForm.objects.get(name = name )
+            run = Run.objects.get(name = name)
             map = "nothing"
             p10 = "nothing"
             p20 = "nothing"
