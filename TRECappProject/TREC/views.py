@@ -226,15 +226,16 @@ def submit(request):
             task = request.POST.get('task')
             taskObj = Task.objects.get(title=task)
             researcher = request.user
-            #run.task = taskObj
-            #run.researcher = researcher
+            run.task = taskObj
+            run.researcher = researcher
+            name = request.POST.get('name')
             filename = "~/TRECevalProject/TRECevalProject/TRECappProject/media/runs/" + str(taskObj.slug) + "/"  + str(run.run_file.name)
             judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/media/judgements/" + str(taskObj.track.title) + "/" + str(taskObj.judgement_file.name) + ".qrels"
             #filename = str(run.run_file)
             print judgement
             print filename
             run.save()
-            #run = SubmitForm.objects.get(task = taskObj)
+            run = SubmitForm.objects.get(name = name )
             map = "nothing"
             p10 = "nothing"
             p20 = "nothing"
