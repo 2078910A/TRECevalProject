@@ -3,7 +3,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TRECappProject.settings')
 
 import django
 django.setup()
-
+from django.core.files import File
+from TRECappProject.settings import DATA_ROOT
 from TREC.models import *
 
 import random
@@ -18,20 +19,17 @@ def populate():
     user_john = add_user("John", "john")
     add_userprofile(user_john, display_name="john", organisation="Edinburgh")
 
-    clinicalTrack = add_track("Clinical Decision Support", "https://clinical.com", description="Clinical searching...", genre="Medical")
-    federatedWebTrack = add_track("Federated Web Seach", "https://fedWeb.com", description="Search the federated web", genre="Web")
-    kbaTrack = add_track("Knowledge Base Acceleration", "https://kbaweb.com", description="Accelerate Knowledge Base",genre="Web")
+    robust2005 = add_track("Robust2005", "http://trec.nist.gov/data/t14_robust.html", description="News Retrieval", genre="News")
+    terabyte = add_track("Terabyte","http://www-nlpir.nist.gov/projects/terabyte/", description="Terabyte Web Track", genre="Web")
+    apnews = add_track("AP News", "", description="News Retrieval Track",genre="News")
 
-    task1 = add_task(track=kbaTrack, title="KBA Track 1", task_url="https://twitter.com", description="A description of KBA Track 1", year=2005)
-    task2 = add_task(track=federatedWebTrack, title="FW Track 1", task_url="https://steve.com", description="A description of FW Track 1", year=2001)
-    task3 = add_task(track=clinicalTrack, title="Clinical Track 1", task_url="https://task3.com", description="A description of Clinical Track 1", year=2006)
-    task4 = add_task(track=kbaTrack, title="KBA Track 2", task_url="https://task4.com", description="A description of KBA track 2", year=2005)
-    #task5 = add_task(federatedWebTrak, "")
+    task1 = add_task(track=robust2005, title="Robust2005", task_url="http://trec.nist.gov/data/t14_robust.html", description="For each topic find all the relevant documents", year=2005, judgement=os.path.join(DATA_ROOT,"robust","aq.trec2005.qrels"))
+    task2 = add_task(track=terabyte, title="Web2005", task_url="http://www-nlpir.nist.gov/projects/terabyte/", description="Find all the relevant web pages", year=2005, judgement=os.path.join(DATA_ROOT,"web","dg.trec.qrels"))
+    task3 = add_task(track=apnews, title="APNews", task_url="", description="Find all the relevant news articles", year=2001, judgement=os.path.join(DATA_ROOT,"news","ap.trec.qrels"))
 
 def add_user(username, password):
     u = User.objects.get_or_create(username=username)[0]
-    u.username = username
-    u.password = password
+    u.set_password(username)
     u.save()
     return u
 
@@ -50,12 +48,14 @@ def add_track(title, track_url, description, genre):
     t.save()
     return t
 
-def add_task(track, title, task_url, description, year):
+def add_task(track, title, task_url, description, year, judgement):
     t = Task.objects.get_or_create(title=title,track=track)[0]
     t.title = title
     t.task_url = task_url
     t.description = description
     t.year = year
+    if judgement:
+        t.judgement_file = File(open(judgement))
     t.save()
     return t
 
