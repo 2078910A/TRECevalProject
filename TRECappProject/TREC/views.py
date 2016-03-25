@@ -229,13 +229,13 @@ def submit(request):
             run.task = taskObj
             run.researcher = researcher
             name = request.POST.get('name')
-            filename = run.run_file.path
-            judgement = taskObj.judgement_file.path
+            filename = str(run.run_file.path)
+            judgement = str(taskObj.judgement_file.path) + ".qrels"
             #filename = str(run.run_file)
             print judgement
             print filename
             run.save()
-            process = subprocess.Popen(['./trec_eval.8.1/trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = subprocess.Popen(['~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval.c', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
             #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
             #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
