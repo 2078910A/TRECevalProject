@@ -241,30 +241,28 @@ def submit(request):
             #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
             #print "command = " + command + "\n"
             #output = subprocess.check_output([command],shell=True)
-            map = p10 = p20 = None
+            mean_ap = p10 = p20 = None
             for lines in process.stdout.read().split("\n"):
-                if "map" in lines:
+                if "map" in lines and mean_ap = None:
                     line = lines.split("\t")
-                    map = float(line[2])
-                if "P10" in lines and p10 == "nothing":
+                    mean_ap = float(line[2])
+                if "P10" in lines and p10 == None:
                     line = lines.split("\t")
                     p10 = float(line[2])
-	        if "P20" in lines and p20 == "nothing":
+	        if "P20" in lines and p20 == None:
                     line = lines.split("\t")
                     p20 = float(line[2])
             print "\n"
-            print output
-            print map
+            print mean_ap
             print "\t"
             print p10
             print "\t"
             print p20
-            run.mean_average_precision = map
+            run.mean_average_precision = mean_ap
             run.p10 = p10
             run.p20 = p20
-            if map is not None:
+            if mean_ap is not None:
                 run.save()
-                print run.run_file
                 return HttpResponseRedirect('/TRECapp/')
             run.delete()
     else:
