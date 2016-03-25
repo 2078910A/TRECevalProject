@@ -10,15 +10,13 @@ from TREC.models import *
 import random
 
 def populate():
-    user_bob = add_user("Bob", "bob")
-    add_userprofile(user=user_bob, display_name="bob", organisation="Glasgow Uni")
-    user_steve = add_user("Steve", "steve")
-    add_userprofile(user_steve, display_name="steve", organisation="Stirling Uni")
-    user_david = add_user("David", "david")
-    add_userprofile(user_david, display_name="david", organisation="Falkirk Uni")
-    user_john = add_user("John", "john")
-    add_userprofile(user_john, display_name="john", organisation="Edinburgh")
-
+    user_jill = add_user("jill", "jill")
+    add_userprofile(user=user_jill, display_name="jill", organisation="Glasgow Uni")
+    user_bob = add_user("bob", "bob")
+    add_userprofile(user_bob, display_name="bob", organisation="Stirling Uni")
+    user_jen = add_user("jen", "jen")
+    add_userprofile(user_jen, display_name="jen", organisation="Falkirk Uni")
+    
     robust2005 = add_track("Robust2005", "http://trec.nist.gov/data/t14_robust.html", description="News Retrieval", genre="News")
     terabyte = add_track("Terabyte","http://www-nlpir.nist.gov/projects/terabyte/", description="Terabyte Web Track", genre="Web")
     apnews = add_track("AP News", "", description="News Retrieval Track",genre="News")
