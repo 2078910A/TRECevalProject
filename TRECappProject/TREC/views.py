@@ -235,14 +235,14 @@ def submit(request):
             print judgement
             print filename
             run.save()
-            process = subprocess.Popen(['.trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = subprocess.Popen(['./trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
             #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
             #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
             #print "command = " + command + "\n"
             #output = subprocess.check_output([command],shell=True)
-            outputList = process.split('\n')
-            for lines in outputList:
+            map = p10 = p20 = None
+            for lines in process.stdout.read().split("\n"):
                 if "map" in lines:
                     line = lines.split("\t")
                     map = float(line[2])
