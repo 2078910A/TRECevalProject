@@ -252,7 +252,6 @@ def submit(request):
 	        if "P20" in lines and p20 == "nothing":
                     line = lines.split("\t")
                     p20 = float(line[2])
-            print type(output)
             print "\n"
             print output
             print map
