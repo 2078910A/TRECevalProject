@@ -243,7 +243,7 @@ def submit(request):
             #output = subprocess.check_output([command],shell=True)
             mean_ap = p10 = p20 = None
             for lines in process.stdout.read().split("\n"):
-                if "map" in lines and mean_ap = None:
+                if "map" in lines and mean_ap == None:
                     line = lines.split("\t")
                     mean_ap = float(line[2])
                 if "P10" in lines and p10 == None:
