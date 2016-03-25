@@ -19,7 +19,9 @@ zixk - Dominik Bladek, 2144751B
 1. Download files: 
 ```
 git clone https://github.com/2078910A/TRECevalProject
-(api), compile it
+
+Navigate to TRECevalProject/TRECappProject/trec_eval.8.1 then in the terminal, type:
+make
 ```
 
 2. Setup virtual environment: 
