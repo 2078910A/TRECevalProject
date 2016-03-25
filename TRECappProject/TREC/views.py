@@ -10,6 +10,7 @@ from TREC.forms import *
 from TREC.models import *
 
 import unicodedata
+import os
 
 def homepage(request):
     return render(request, 'TRECapp/index.html', {})
@@ -70,7 +71,7 @@ def profile(request):
     return render(request, 'TRECapp/profile.html',{'profile': profile, 'runs': runTitles})
 
 def calculateRank(run, task):
-    allRunsDesc = Run.objects.filter(task__title=task.title).order_by('-overall')
+    allRunsDesc = Run.objects.filter(task__title=task.title).order_by('-mean_average_precision')
     rank = 1
     for otherRun in allRunsDesc:
         if run.name == otherRun.name:
@@ -85,11 +86,14 @@ def ajax_profile_info_request(request):
         run = Run.objects.get(name=selected_run)
         relevant_task = run.task
         relevant_track = relevant_task.track
+        print relevant_track
         rank = calculateRank(run, relevant_task)
+        print rank
         context_dict['run'] = run
         context_dict['task'] = relevant_task
         context_dict['track'] = relevant_track
         context_dict['rank'] = rank
+        print context_dict
         return render(request, 'TRECapp/profile-details-table.html', context_dict)
 
 
@@ -214,57 +218,108 @@ def user_login(request):
 
     return render(request, 'TRECapp/login.html', context)
 
+import subprocess
+
 @login_required
 def submit(request):
 
     if request.method == 'POST':
         form = SubmitForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             #name and run file should be saved to run now but we still need to give it a task and researcher
             run = form.save(commit=False)
             task = request.POST.get('task')
             taskObj = Task.objects.get(title=task)
-            researcher = request.user
+            trackObj = taskObj.track
             run.task = taskObj
+            judgement = taskObj.judgement_file
+            judgementStr = str(judgement)
+            researcher = request.user
             run.researcher = researcher
+            username = researcher.username
             name = request.POST.get('name')
-            filename = run.run_file.path
-            judgement = taskObj.judgement_file.path
-            #filename = str(run.run_file)
-            print judgement
-            print filename
+            run.name = name
             run.save()
-            process = subprocess.Popen(['./trec_eval.8.1/trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            runFile = str(run.run_file)
+            runFileName = runFile.split("/")[3]
+            print runFileName
+
+            runFileStr = str(runFile)
+            os.chdir("trec_eval.8.1/")
+            trackSlug = trackObj.slug
+            taskSlug = taskObj.slug
+            print os.getcwd()
+            #os.chdir("trec_eval.8.1/")
+            command = "./trec_eval -c ../media/judgements/" + trackSlug + "/" + taskSlug + ".qrels"  + " " + "../media/runs/" + trackSlug + "/" + taskSlug + "/" + runFileName
+            #os.chdir("../")
+            command = str(command)
+            os.system(command)
+            print command
+            output = subprocess.check_output([command], shell=True)
+            print output
+            outputlist = output.split("\n")
+            p10 = None
+            p20 = None
+            for line in outputlist:
+                if "map" in line:
+                    line = line.split("\t")
+                    mean_ap = float(line[2])
+                if "P10" in line and p10 == None:
+                    line = line.split("\t")
+                    p10 = float(line[2])
+                if "P20" in line and p20 == None:
+                    line = line.split("\t")
+                    p20 = float(line[2])
+            print p10
+            print p20
+            print mean_ap
+            run.p10 = p10
+            run.p20 = p20
+            run.mean_average_precision = mean_ap
+            run.save()
+            print "This run's P10 is: " + str(run.p10) + "\n" + "This run's P20 is: " + str(run.p20) + "\n" + "This run's map is: " + str(run.mean_average_precision)
+            return HttpResponseRedirect("/TRECapp/submit")
+
+            #researcher = request.user
+            #
+            #run.researcher = researcher
+            #name = request.POST.get('name')
+            #filename = run.run_file.path
+            #judgement = taskObj.judgement_file.path
+            #filename = str(run.run_file)
+            #print judgement
+            #print filename
+            #process = subprocess.Popen(['./trec_eval.8.1/trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
             #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
             #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
             #print "command = " + command + "\n"
             #output = subprocess.check_output([command],shell=True)
-            mean_ap = p10 = p20 = None
-            for lines in process.stdout.read().split("\n"):
-                if "map" in lines and mean_ap == None:
-                    line = lines.split("\t")
-                    mean_ap = float(line[2])
-                if "P10" in lines and p10 == None:
-                    line = lines.split("\t")
-                    p10 = float(line[2])
-	        if "P20" in lines and p20 == None:
-                    line = lines.split("\t")
-                    p20 = float(line[2])
-            print "\n"
-            print mean_ap
-            print "\t"
-            print p10
-            print "\t"
-            print p20
-            run.mean_average_precision = mean_ap
-            run.p10 = p10
-            run.p20 = p20
-            if mean_ap is not None:
-                run.save()
-                return HttpResponseRedirect('/TRECapp/')
-            run.delete()
+            #mean_ap = p10 = p20 = None
+            #for lines in process.stdout.read().split("\n"):
+            #    if "map" in lines and mean_ap == None:
+            #        line = lines.split("\t")
+            #        mean_ap = float(line[2])
+            #    if "P10" in lines and p10 == None:
+            #        line = lines.split("\t")
+            #        p10 = float(line[2])
+	#        if "P20" in lines and p20 == None:
+            #        line = lines.split("\t")
+            #        p20 = float(line[2])
+            #print "\n"
+            #print mean_ap
+            #print "\t"
+            #print p10
+            #print "\t"
+            #print p20
+            #run.mean_average_precision = mean_ap
+            #run.p10 = p10
+            #run.p20 = p20
+            #if mean_ap is not None:
+                #run.save()
+                #return HttpResponseRedirect('/TRECapp/')
+            #run.delete()
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})

@@ -58,7 +58,7 @@ class Track(models.Model):
 #Returns a path of format 'judgements/<Track title>/task_<task id>/'
 #This is where each judgement file will be stored
 def task_judgement_file_path(instance, filename):
-    return 'judgements/{0}/{1}'.format(instance.track.slug, instance.slug)
+    return 'judgements/{0}/{1}.qrels'.format(instance.track.slug, instance.slug)
 
 class Task(models.Model):
 
@@ -82,7 +82,7 @@ class Task(models.Model):
 
 def run_path(instance, filename):
     filename = "user_{0}".format(instance.researcher.username)
-    return "runs/{0}/{1}/{2}".format(instance.task.track.slug, instance.task.slug, filename)
+    return "runs/{0}/{1}/{2}.res".format(instance.task.track.slug, instance.task.slug, filename)
 
 
 class Run(models.Model):
