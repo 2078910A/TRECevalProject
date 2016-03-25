@@ -229,7 +229,7 @@ def submit(request):
             researcher = request.user
             run.task = taskObj
             run.researcher = researcher
-            filename = str(run.run_file.name)
+            filename = "~/TRECevalProject/TRECevalProject/TRECappProject/media/runs/" + str(taskObj.track.slug) +"/" + str(taskObj.slug) + "/" + str(run.run_file.name)
             print filename
             judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/" + str(taskObj.judgement_file)+ ".qrels"
             print judgement
