@@ -23,8 +23,15 @@ def leaderboard(request):
 
 @login_required
 def editprofile(request):
+
+    # Get user currently signed in
     user = request.user
+    # Get the profile details of the user currently signed in 
     profile = UserProfile.objects.get(user=user)
+
+     # A boolean value for telling the template whether the profile edit was successful.
+     # Set to False initially. Code changes value to True when profile edit succeeds.
+    updated = False
 
     # Check to see if HTTP POST, in order to manipulate data
     if request.method == 'POST':
@@ -38,7 +45,11 @@ def editprofile(request):
         # If both forms are valid..
         if user_form.is_valid() and profile_form.is_valid():
 
-            # Then save data in db
+            #Saving both forms
+            user_form.save()
+            profile_form.save()
+            
+            # Then save user data in db
             user.save()
 
             # Check for profile picture
@@ -48,17 +59,11 @@ def editprofile(request):
             # Save rest of user profile data
             profile.save()
 
+            # Update our variable to tell the template profile edit was successful.
+            updated = True
+            
             # Redirect to the users profile
             return HttpResponseRedirect('/TRECapp/profile/')
-    else:
-
-        # Not HTTP POST..
-        user_form = UpdateUserForm(instance=user)
-        profile_form = UpdateUserProfileForm(instance=profile)
-
-        # Render template
-    return render(request, 'TRECapp/editprofile.html',
-                  {'user_form': user_form, 'profile_form': profile_form})
 
 @login_required	
 def profile(request):
