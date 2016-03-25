@@ -66,7 +66,7 @@ class Task(models.Model):
     title = models.CharField(max_length=128, unique=True, default="")
     task_url = models.URLField()
     description = models.CharField(max_length=256)
-    year = models.IntegerField(blank=False)
+    year = models.IntegerField(blank=False, default=2016)
     slug = models.SlugField(default="")
 
     #Will store judgement (.qrel) files in 'media/judgements/'
