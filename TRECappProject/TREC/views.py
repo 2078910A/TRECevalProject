@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import subprocess
+import os
 
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -23,8 +24,15 @@ def leaderboard(request):
 
 @login_required
 def editprofile(request):
+
+    # Get user currently signed in
     user = request.user
+    # Get the profile details of the user currently signed in
     profile = UserProfile.objects.get(user=user)
+
+     # A boolean value for telling the template whether the profile edit was successful.
+     # Set to False initially. Code changes value to True when profile edit succeeds.
+    updated = False
 
     # Check to see if HTTP POST, in order to manipulate data
     if request.method == 'POST':
@@ -38,7 +46,11 @@ def editprofile(request):
         # If both forms are valid..
         if user_form.is_valid() and profile_form.is_valid():
 
-            # Then save data in db
+            #Saving both forms
+            user_form.save()
+            profile_form.save()
+
+            # Then save user data in db
             user.save()
 
             # Check for profile picture
@@ -48,8 +60,12 @@ def editprofile(request):
             # Save rest of user profile data
             profile.save()
 
+            # Update our variable to tell the template profile edit was successful.
+            updated = True
+
             # Redirect to the users profile
             return HttpResponseRedirect('/TRECapp/profile/')
+
     else:
 
         # Not HTTP POST..
@@ -227,40 +243,56 @@ def submit(request):
         form = SubmitForm(request.POST, request.FILES)
 
         if form.is_valid():
-            #name and run file should be saved to run now but we still need to give it a task and researcher
+
+            #name and run file should be saved to run now but we still need to give it a task, researcher, name and assign the relevant task to it
             run = form.save(commit=False)
+
+            #Get the title of the task from the form, use this to pull the actual object from the db and assign this task to the submitted run
             task = request.POST.get('task')
             taskObj = Task.objects.get(title=task)
-            trackObj = taskObj.track
             run.task = taskObj
-            judgement = taskObj.judgement_file
-            judgementStr = str(judgement)
+
+            #Of course, we need to also know who submitted the run, this is just taken from the request
             researcher = request.user
             run.researcher = researcher
             username = researcher.username
+
+            #Get the 4 digit identifier for the run and assign it to it
             name = request.POST.get('name')
             run.name = name
+
+            #We've given a value to the fields designated by the submit form, so we can save this into the db. This is necessary as we want access
+            #to the run file itself when calling the trec_eval script
             run.save()
+
+            #Use the task object to get the associated track object as we'll be needing to know where the qrels are and what the track slug is
+            trackObj = taskObj.track
+            judgement = taskObj.judgement_file
+            judgementStr = str(judgement)
+
+            #Run file is the actual run the user just submittied, it's a path structured like, "/runs/<track.slug>/<task.slug>/<filename>"
+            #this directory structure won't change so if we split the string at every "/" and take the 4th element then we get the filename
+            #that the user just submitted
             runFile = str(run.run_file)
             runFileName = runFile.split("/")[3]
-            print runFileName
 
-            runFileStr = str(runFile)
-            os.chdir("trec_eval.8.1/")
+            #We'll be using these slugs to construct the parameters for the call to trec_eval
             trackSlug = trackObj.slug
             taskSlug = taskObj.slug
-            print os.getcwd()
-            #os.chdir("trec_eval.8.1/")
-            command = "./trec_eval -c ../media/judgements/" + trackSlug + "/" + taskSlug + ".qrels"  + " " + "../media/runs/" + trackSlug + "/" + taskSlug + "/" + runFileName
-            #os.chdir("../")
-            command = str(command)
+
+            #Construct the command which is to be executed by the terminal and execute it
+            command = "sudo ./trec_eval.8.1/trec_eval -c ./media/judgements/{0}/{1}.qrels ./media/runs/{2}/{3}/{4}".format(trackSlug, taskSlug, trackSlug, taskSlug, runFileName)
             os.system(command)
-            print command
-            output = subprocess.check_output([command], shell=True)
-            print output
+
+            #This is what's output to the terminal from trec_eval which we then split at every newline character to get a list of lines of output
+            output = subprocess.check_output(command, shell=True)
             outputlist = output.split("\n")
+
+            #This is so we don't pick up the p100, p1000 or p200 values by using a python string search (if "p10" in line:)
             p10 = None
             p20 = None
+
+            #Get the p10, p20 and map results for the user's run
             for line in outputlist:
                 if "map" in line:
                     line = line.split("\t")
@@ -271,55 +303,16 @@ def submit(request):
                 if "P20" in line and p20 == None:
                     line = line.split("\t")
                     p20 = float(line[2])
-            print p10
-            print p20
-            print mean_ap
+
+            #Assign these values to the run object that we've already saved and save it again so these fields are updated
             run.p10 = p10
             run.p20 = p20
             run.mean_average_precision = mean_ap
             run.save()
-            print "This run's P10 is: " + str(run.p10) + "\n" + "This run's P20 is: " + str(run.p20) + "\n" + "This run's map is: " + str(run.mean_average_precision)
-            return HttpResponseRedirect("/TRECapp/submit")
 
-            #researcher = request.user
-            #
-            #run.researcher = researcher
-            #name = request.POST.get('name')
-            #filename = run.run_file.path
-            #judgement = taskObj.judgement_file.path
-            #filename = str(run.run_file)
-            #print judgement
-            #print filename
-            #process = subprocess.Popen(['./trec_eval.8.1/trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-            #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
-            #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
-            #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
-            #print "command = " + command + "\n"
-            #output = subprocess.check_output([command],shell=True)
-            #mean_ap = p10 = p20 = None
-            #for lines in process.stdout.read().split("\n"):
-            #    if "map" in lines and mean_ap == None:
-            #        line = lines.split("\t")
-            #        mean_ap = float(line[2])
-            #    if "P10" in lines and p10 == None:
-            #        line = lines.split("\t")
-            #        p10 = float(line[2])
-	#        if "P20" in lines and p20 == None:
-            #        line = lines.split("\t")
-            #        p20 = float(line[2])
-            #print "\n"
-            #print mean_ap
-            #print "\t"
-            #print p10
-            #print "\t"
-            #print p20
-            #run.mean_average_precision = mean_ap
-            #run.p10 = p10
-            #run.p20 = p20
-            #if mean_ap is not None:
-                #run.save()
-                #return HttpResponseRedirect('/TRECapp/')
-            #run.delete()
+            print "This run's P10 is: " + str(run.p10) + "\n" + "This run's P20 is: " + str(run.p20) + "\n" + "This run's map is: " + str(run.mean_average_precision)
+            return HttpResponseRedirect("/TRECapp/profile/")
+
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})
