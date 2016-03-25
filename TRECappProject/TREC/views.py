@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import subprocess
+import os
 
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -228,22 +229,22 @@ def submit(request):
             researcher = request.user
             run.task = taskObj
             run.researcher = researcher
-            name = request.POST.get('name')
             filename = str(run.run_file.path)
-            judgement = str(taskObj.judgement_file.path) + ".qrels"
-            #filename = str(run.run_file)
-            print judgement
             print filename
+            judgement = str(taskObj.judgement_file)+ ".qrels"
+            print judgement
             run.save()
-            process = subprocess.Popen(['~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval.c', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            mean_ap = None
+            p10 = None
+            p20 = None
             #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
             #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
-            #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
-            #print "command = " + command + "\n"
-            #output = subprocess.check_output([command],shell=True)
-            mean_ap = p10 = p20 = None
-            for lines in process.stdout.read().split("\n"):
-                if "map" in lines and mean_ap == None:
+            command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
+            print "command = " + command + "\n"
+            output = subprocess.check_output([command],shell=True)
+            outputList = output.split('\n')
+            for lines in outputList:
+                if "map" in lines:
                     line = lines.split("\t")
                     mean_ap = float(line[2])
                 if "P10" in lines and p10 == None:
@@ -252,7 +253,7 @@ def submit(request):
 	        if "P20" in lines and p20 == None:
                     line = lines.split("\t")
                     p20 = float(line[2])
-            print "\n"
+            print output
             print mean_ap
             print "\t"
             print p10
@@ -261,10 +262,9 @@ def submit(request):
             run.mean_average_precision = mean_ap
             run.p10 = p10
             run.p20 = p20
-            if mean_ap is not None:
-                run.save()
-                return HttpResponseRedirect('/TRECapp/')
-            run.delete()
+            run.save()
+            print run.run_file
+            return HttpResponseRedirect('/TRECapp/')
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})
