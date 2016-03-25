@@ -230,7 +230,7 @@ def submit(request):
             run.researcher = researcher
             name = request.POST.get('name')
             filename = run.run_file.path
-            judgement = task.judgement_file
+            judgement = taskObj.judgement_file.path
             #filename = str(run.run_file)
             print judgement
             print filename
