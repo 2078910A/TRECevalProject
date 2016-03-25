@@ -65,6 +65,16 @@ def editprofile(request):
             # Redirect to the users profile
             return HttpResponseRedirect('/TRECapp/profile/')
 
+    else:
+
+        # Not HTTP POST..
+        user_form = UpdateUserForm(instance=user)
+        profile_form = UpdateUserProfileForm(instance=profile)
+
+        # Render template
+    return render(request, 'TRECapp/editprofile.html',
+                  {'user_form': user_form, 'profile_form': profile_form})
+
 @login_required	
 def profile(request):
     user = request.user
