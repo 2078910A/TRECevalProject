@@ -235,7 +235,7 @@ def submit(request):
             print judgement
             print filename
             run.save()
-            process = subprocess.Popen(['./trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            process = subprocess.Popen(['./trec_eval.8.1/trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
             #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
             #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
