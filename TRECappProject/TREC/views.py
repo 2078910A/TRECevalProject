@@ -229,22 +229,19 @@ def submit(request):
             run.task = taskObj
             run.researcher = researcher
             name = request.POST.get('name')
-            filename = "~/TRECevalProject/TRECevalProject/TRECappProject/media/runs/" + str(taskObj.slug) + "/"  + str(run.run_file.name)
-            judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/media/judgements/" + str(taskObj.slug) + "/" + str(taskObj.judgement_file.name) + ".qrels"
+            filename = run.run_file.path
+            judgement = task.judgement_file.path
             #filename = str(run.run_file)
             print judgement
             print filename
             run.save()
-            run = Run.objects.get(name = name)
-            map = "nothing"
-            p10 = "nothing"
-            p20 = "nothing"
+            process = subprocess.Popen(['.trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
             #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
-            command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
-            print "command = " + command + "\n"
-            output = subprocess.check_output([command],shell=True)
-            outputList = output.split('\n')
+            #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
+            #print "command = " + command + "\n"
+            #output = subprocess.check_output([command],shell=True)
+            outputList = process.split('\n')
             for lines in outputList:
                 if "map" in lines:
                     line = lines.split("\t")
@@ -266,9 +263,11 @@ def submit(request):
             run.mean_average_precision = map
             run.p10 = p10
             run.p20 = p20
-            run.save()
-            print run.run_file
-            return HttpResponseRedirect('/TRECapp/')
+            if map is not None:
+                run.save()
+                print run.run_file
+                return HttpResponseRedirect('/TRECapp/')
+            run.delete()
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})
