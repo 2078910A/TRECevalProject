@@ -43,7 +43,7 @@ pip install -r requirements.txt
 ```
 python manage.py makemigrations
 python manage.py migrate
-python [population script]
+python populate_TREC.py
 ```
 
 6. Run project:
