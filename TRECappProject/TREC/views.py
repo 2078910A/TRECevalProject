@@ -229,9 +229,9 @@ def submit(request):
             researcher = request.user
             run.task = taskObj
             run.researcher = researcher
-            filename = str(run.run_file.path)
+            filename = str(run.run_file.name)
             print filename
-            judgement = str(taskObj.judgement_file)+ ".qrels"
+            judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/" + str(taskObj.judgement_file)+ ".qrels"
             print judgement
             run.save()
             mean_ap = None
