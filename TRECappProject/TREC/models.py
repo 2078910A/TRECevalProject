@@ -121,7 +121,6 @@ class Run(models.Model):
     mean_average_precision = models.FloatField(blank=True, default=0.0)
     p10 = models.FloatField(blank=True, default=0.0)
     p20 = models.FloatField(blank=True, default=0.0)
-    overall = models.FloatField(blank=True, default=0.0)
 
     def __unicode__(self):
         return "{0}, Submitted by: {1}".format(self.name, self.researcher.username)

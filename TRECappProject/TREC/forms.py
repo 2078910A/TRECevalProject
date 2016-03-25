@@ -45,7 +45,6 @@ class LeaderboardForm(forms.Form):
         ('mean_average_precision', 'map'),
         ('p10', 'p10'),
         ('p20', 'p20'),
-        ('overall', 'overall'),
         ]
     result_type = forms.ChoiceField(choices=result_type_choices, label='Sort by', widget=forms.Select(attrs={'id': 'sortby-selector'}))
 

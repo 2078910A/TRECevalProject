@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import subprocess
 
 from django.http import HttpResponse, HttpResponseRedirect
 
@@ -218,7 +219,7 @@ def submit(request):
 
     if request.method == 'POST':
         form = SubmitForm(request.POST, request.FILES)
-
+        
         if form.is_valid():
             #name and run file should be saved to run now but we still need to give it a task and researcher
             run = form.save(commit=False)
@@ -227,9 +228,45 @@ def submit(request):
             researcher = request.user
             run.task = taskObj
             run.researcher = researcher
-            print run.run_file.path
+            name = request.POST.get('name')
+            filename = run.run_file.path
+            judgement = taskObj.judgement_file.path
+            #filename = str(run.run_file)
+            print judgement
+            print filename
             run.save()
-            return HttpResponseRedirect('/TRECapp/')
+            process = subprocess.Popen(['./trec_eval.8.1/trec_eval', judgement, filename], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            #filename = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.bm25.0.50.res"
+            #judgement = "~/TRECevalProject/TRECevalProject/TRECappProject/data/news/ap.trec.qrels"
+            #command = "~/TRECevalProject/TRECevalProject/TRECappProject/trec_eval.8.1/trec_eval -c " + judgement + " " + filename
+            #print "command = " + command + "\n"
+            #output = subprocess.check_output([command],shell=True)
+            map = p10 = p20 = None
+            for lines in process.stdout.read().split("\n"):
+                if "map" in lines:
+                    line = lines.split("\t")
+                    map = float(line[2])
+                if "P10" in lines and p10 == "nothing":
+                    line = lines.split("\t")
+                    p10 = float(line[2])
+	        if "P20" in lines and p20 == "nothing":
+                    line = lines.split("\t")
+                    p20 = float(line[2])
+            print "\n"
+            print output
+            print map
+            print "\t"
+            print p10
+            print "\t"
+            print p20
+            run.mean_average_precision = map
+            run.p10 = p10
+            run.p20 = p20
+            if map is not None:
+                run.save()
+                print run.run_file
+                return HttpResponseRedirect('/TRECapp/')
+            run.delete()
     else:
         form = SubmitForm()
     return render(request, 'TRECapp/submit.html', {'form': form})
