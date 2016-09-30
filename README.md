@@ -5,7 +5,7 @@ Lab Wednesday 2-4 Group C
 ***
 ##Project Members (github account - name, student matriculation number)
 
-2085099 - Maximilian Morell, 2085099M
+maximilian - Maximilian Morell, 2085099M
 
 2078910A - Blair Aitcheson, 2078910A
 
